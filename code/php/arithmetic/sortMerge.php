@@ -1,6 +1,6 @@
 <?php
 #
-# 合并排序算法
+# 合并（归并）排序算法
 #
 class MergeSort2
 {
