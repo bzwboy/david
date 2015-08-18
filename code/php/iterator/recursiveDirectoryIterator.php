@@ -1,3 +1,5 @@
+<?php
+/*
 目录路径：/home/libo/git/cli/src/implements
 RecursiveIteratorIterator 四种常量搜索结果差异
 
@@ -72,8 +74,17 @@ string(41) "/home/libo/git/cli/src/implements/process"
 string(46) "/home/libo/git/cli/src/implements/Makefile.ini"
 
 RecursiveIteratorIterator::CATCH_GET_CHILD
+string(46) "/home/libo/git/cli/src/implements/Makefile.ini"
 string(35) "/home/libo/git/cli/src/implements/."
 string(36) "/home/libo/git/cli/src/implements/.."
+string(42) "/home/libo/git/cli/src/implements/Makefile"
 string(41) "/home/libo/git/cli/src/implements/process"
-string(46) "/home/libo/git/cli/src/implements/Makefile.ini"
+ */
+
+$base = '/home/libo/git/cli/src/implements'; 
+$const = RecursiveIteratorIterator::CATCH_GET_CHILD;
+$ritit = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($base), $const);
+foreach ($ritit as $splFileInfo) {
+    var_dump($splFileInfo->getPathname());
+}
 
