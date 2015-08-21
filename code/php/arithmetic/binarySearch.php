@@ -20,3 +20,4 @@ function bin_search($arr,$low,$high,$value) {
 $arr = [2,1,3,5,4];
 print_r($arr);
 print_r(bin_search($arr, 1, 5, 3));
+

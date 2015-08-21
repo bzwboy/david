@@ -1,6 +1,7 @@
 <?php
 #
 # 合并（归并）排序算法
+# 时间复杂度 O(nlogn)
 #
 class MergeSort2
 {
@@ -12,8 +13,7 @@ class MergeSort2
             $arr3[] = $arr1[0] <= $arr2[0] ? array_shift($arr1) : array_shift($arr2);
         }
         // 剩下的$arr1和$arr2中都是较大的值，且他们是有序的，故可以直接合并到$arr3后面
-        $arr3 = array_merge($arr3, $arr1, $arr2);
-        return $arr3;
+        return array_merge($arr3, $arr1, $arr2);
     }
 
     // 归并排序算法

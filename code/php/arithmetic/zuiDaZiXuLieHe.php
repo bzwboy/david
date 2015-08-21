@@ -15,7 +15,7 @@ function maxSub($arr)
         #echo "--------", "\n";
         for ($j = $i; $j < $n; $j++) {
             // 优化结果
-            if ($arr[$i] < 0) {
+            if ($arr[$j] < 0) {
                 break;
             }
 
@@ -32,10 +32,9 @@ function maxSub($arr)
     echo __FUNCTION__, "({$s}~{$e}): ", $maxSum, "\n";
 }
 
-// 算法不正确
 // 时间复杂度 O(N)
+//
 // http://blog.csdn.net/joylnwang/article/details/6859677
-// 太复杂，看不懂
 // 规则：
 // （1）任何可能产生最大和的子序列，首尾元素只能是正值。
 // （2）如果某个序列和为负值，那么以这个序列开始的所有序列都不可能出现最大和，故忽略掉。
