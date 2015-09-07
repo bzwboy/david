@@ -1,0 +1,34 @@
+#!/bin/bash
+#===============================================================================
+#
+#          FILE:  http.sh
+# 
+#         USAGE:  ./http.sh 
+# 
+#   DESCRIPTION:  http 服务器
+# 
+#        AUTHOR:  jacob, libo@eyou.net
+#       CREATED:  2012年10月26日 11时39分33秒 CST
+#===============================================================================
+
+CMD_PHP="/usr/local/rhea/opt/bin/php"
+tmp_file=$(mktemp)
+fail=0
+
+find . -name '*.php' > $tmp_file
+while read s; do
+    ret=$($CMD_PHP -l $s 2>&1)
+    echo $ret |grep "No syntax errors" >/dev/null
+    if ! [ 0 -eq $? ]; then
+        echo "================== $s =================";
+        echo $ret
+        let fail=1
+        echo
+    fi
+done < $tmp_file
+rm $tmp_file
+
+if [ 0 -eq $fail ]; then
+    echo "+Ok, ALL.";
+fi
+

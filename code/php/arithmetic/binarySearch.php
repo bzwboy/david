@@ -2,17 +2,18 @@
 #
 # 二分法查找
 #
-function bin_search($arr,$low,$high,$value) {
-    if($low>$high) {
+function bin_search($arr, $low, $high, $value) 
+{
+    if($low > $high) {
         return false;
     } else {
-        $mid=floor(($low+$high)/2);
-        if($value==$arr[$mid]) {
+        $mid = floor(($low+$high)/2);
+        if ($value == $arr[$mid]) {
             return $mid;
-        } elseif($value<$arr[$mid]) {
-            return bin_search($arr,$low,$mid-1,$value);
+        } elseif ($value < $arr[$mid]) {
+            return bin_search($arr, $low, $mid - 1, $value);
         } else {
-            return bin_search($arr,$mid+1,$high,$value);
+            return bin_search($arr, $mid + 1, $high, $value);
         }
     }
 }
