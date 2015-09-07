@@ -2,20 +2,14 @@
 # 建立文件并设定访问权限
 
 #
-# 错误处理
-#
-
-myexp() {
-    if [ "$?" != "0" ]; then
-        if [ "$1" ]; then
-            echo "$1"
-        fi
-        echo "fatal, program has stopped."
-        exit $?
-    fi
-}
-
-#
 # 逻辑
 #
-find . ! -name 'Makefile*' -type f | xargs grep -rn --color "$1"
+
+# 直接用 xargs 方式，当文件名中出现空格的时候
+# shell会按照空格隔开，当成单独的文件名，出现异常。
+#find . ! -name 'Makefile*' -type f | xargs grep -rn --color "$1"
+
+# 通过双引号的方式，把带有空格的文件名组合在一起
+# 避免shell默认行为。
+#find . ! -name 'Makefile*' -type f | while read fn; do grep -rn --col "$1" "$fn"; done
+find . ! -name 'Makefile*' -type f | while read fn; do grep -rHn --col "$1" "$fn"; done
