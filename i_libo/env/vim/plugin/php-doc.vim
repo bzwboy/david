@@ -79,10 +79,10 @@ let g:pdv_cfg_CommentHead1 = "/*"
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Author = "libo <libo@eyou.net>"
 let g:pdv_cfg_License = ""
-let g:pdv_cfg_Class = "eYou RHEA lib"
-let g:pdv_cfg_Package = "RHEA"
-let g:pdv_cfg_Version = "$_EYOUMBR_VERSION$_$"
-let g:pdv_cfg_Copyright = "$_EYOUMBR_COPYRIGHT_$"
+let g:pdv_cfg_Class = "eYou PHP Code"
+let g:pdv_cfg_Package = "Product"
+let g:pdv_cfg_Version = ""
+let g:pdv_cfg_Copyright = "Copyright (C) 2008-2015 Minnesota David"
 
 let g:pdv_cfg_ReturnVal = "void"
 
@@ -278,7 +278,7 @@ func! PhpDocFunc()
         exe l:txtBOL . g:pdv_cfg_Commentn . "@final" . g:pdv_cfg_EOL
     endif
 	exe l:txtBOL . g:pdv_cfg_Commentn . "@return " . g:pdv_cfg_ReturnVal . g:pdv_cfg_EOL
-	exe l:txtBOL . g:pdv_cfg_Commentn . "@throws em_exception" . g:pdv_cfg_EOL
+	exe l:txtBOL . g:pdv_cfg_Commentn . "@throws Exception" . g:pdv_cfg_EOL
 
 	" Close the comment block.
 	exe l:txtBOL . g:pdv_cfg_CommentTail . g:pdv_cfg_EOL
@@ -359,8 +359,9 @@ func! PhpDocClass()
         exe l:txtBOL . g:pdv_cfg_Commentn . "@final" . g:pdv_cfg_EOL
     endif
     
-	exe l:txtBOL . g:pdv_cfg_Commentn . "@package    RHEA"  . g:pdv_cfg_EOL
-	exe l:txtBOL . g:pdv_cfg_Commentn . "@subpackage Esop_Core"  . g:pdv_cfg_EOL
+	exe l:txtBOL . g:pdv_cfg_Commentn . "@copyright  " . g:pdv_cfg_Copyright . g:pdv_cfg_EOL
+	exe l:txtBOL . g:pdv_cfg_Commentn . "@author     " . g:pdv_cfg_Author . g:pdv_cfg_EOL
+	exe l:txtBOL . g:pdv_cfg_Commentn . "@package    " . g:pdv_cfg_Package . g:pdv_cfg_EOL
 
 	" Close the comment block.
 	exe l:txtBOL . g:pdv_cfg_CommentTail . g:pdv_cfg_EOL
@@ -438,9 +439,9 @@ func! PhpDocPHP()
     exe l:txtBOL . g:pdv_cfg_CommentHead . g:pdv_cfg_EOL
 	exe l:txtBOL . g:pdv_cfg_Comment1 . g:pdv_cfg_Class . g:pdv_cfg_EOL
     exe l:txtBOL . g:pdv_cfg_Commentn . g:pdv_cfg_EOL
-	exe l:txtBOL . g:pdv_cfg_Commentn . "@package    " . g:pdv_cfg_Package . g:pdv_cfg_EOL
 	exe l:txtBOL . g:pdv_cfg_Commentn . "@copyright  " . g:pdv_cfg_Copyright . g:pdv_cfg_EOL
-	exe l:txtBOL . g:pdv_cfg_Commentn . "@version    " . g:pdv_cfg_Version . g:pdv_cfg_EOL
+	exe l:txtBOL . g:pdv_cfg_Commentn . "@author     " . g:pdv_cfg_Author . g:pdv_cfg_EOL
+	exe l:txtBOL . g:pdv_cfg_Commentn . "@package    " . g:pdv_cfg_Package . g:pdv_cfg_EOL
 	exe l:txtBOL . g:pdv_cfg_CommentTail . g:pdv_cfg_EOL
 endfunc
 

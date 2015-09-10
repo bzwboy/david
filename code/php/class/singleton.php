@@ -1,51 +1,69 @@
 <?php
-class Test
+class Singleton
 {
-    protected static $__new = null;
-    protected $__name = '';
+    private static $inst;
 
-    protected function __construct()
+    /**
+     * 防止 new 
+     * 
+     * @return void
+     * @throws em_exception
+     */
+    private function __construct()
     {
     }
 
-    protected static function lg($msg, $line)
+    /**
+     * 防止深度克隆 
+     * 
+     * @return void
+     * @throws em_exception
+     */
+    private function __clone()
     {
-        echo "[DEBUG] $msg, line: $line\n";
     }
 
-    public static function instance()
+    /**
+     * 防止 unserialize() 
+     * 
+     * @return void
+     * @throws em_exception
+     */
+    private function __wakeup()
     {
-        if (!self::$__new) {
-            self::lg('create new object', __LINE__);
-            self::$__new = new self();
+    }
 
-            self::$__new->__name = 'libo';
-            self::$__new->_helo();
-            //$this->_helo(); // error
+    /**
+     * 防止 serialize() 
+     * 
+     * @return void
+     * @throws em_exception
+     */
+    private function __sleep()
+    {
+    }
+
+    /**
+     * 唯一方法生成单例对象 
+     * 
+     * @return void
+     * @throws em_exception
+     */
+    public static function getInstance()
+    {
+        if (!self::$inst) {
+            self::$inst = new self();
         }
 
-        return self::$__new; 
-    }
-    
-    public function helo()
-    {
-        $this->__name = 'bnn'; // right
-
-        echo __METHOD__ . "\n";
-        echo $this->__name . PHP_EOL;
-        echo "\n";
-    }
-
-    protected function _helo()
-    {
-        echo __METHOD__ . "\n";
-        echo "\n";
+        return self::$inst;
     }
 }
 
-$t = Test::instance();
-$t->helo();
-
-$t = Test::instance();
-$t->helo();
+$a = Singleton::getInstance();
+$b = Singleton::getInstance();
+if ($a === $b) {
+    echo "Same!\n";
+} else {
+    echo "Different!\n";
+}
 
