@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# 获取数据数据的指定列
+awk -v col=$1 '{print $col}'
