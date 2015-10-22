@@ -6,11 +6,11 @@
 	st = status
 	df = diff
 	last = log -1 HEAD
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%Creset%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit
 	cls = remote prune origin
 [user]
-	email = libo@eyou.net
-	name = libo
+	email = mousecat4444@126.com
+	name = bzwboy
 [color]
 	ui = auto
 [http]
