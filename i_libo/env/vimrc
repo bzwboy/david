@@ -1,51 +1,51 @@
-" {{{ base
-"æ˜¾ç¤ºå½“å‰è¡Œå·
-set ru
+"ÏÔÊ¾µ±Ç°ĞĞºÅ
+"set ru
+set nonu
 
-"è‡ªåŠ¨åˆ‡æ¢åˆ°å½“å‰ç›®å½•
+"×Ô¶¯ÇĞ»»µ½µ±Ç°Ä¿Â¼
 "set autochdir
 
-"ç”¨4ä¸ªç©ºæ ¼ä»£æ›¿tab
+"ÓÃ4¸ö¿Õ¸ñ´úÌætab
 set sts=4
 
-"æ™ºèƒ½ç¼©è¿›
+"ÖÇÄÜËõ½ø
 set cinoptions=:0,p0,t0
 set cinw=if,else,while,do,for,switch,case
 set formatoptions=tqo
 set cin
 
-"é«˜äº®
+"¸ßÁÁ
 syn on
 
-"æœç´¢é«˜äº®
+"ËÑË÷¸ßÁÁ
 set hls
 set incsearch
 
-"åœ¨æ’å…¥ tab çš„æ—¶å€™ç”¨ä¸€å®šæ•°é‡çš„ç©ºæ ¼æ•°ä»£æ›¿ tab
+"ÔÚ²åÈë tab µÄÊ±ºòÓÃÒ»¶¨ÊıÁ¿µÄ¿Õ¸ñÊı´úÌæ tab
 set et
 
-"åˆ¶è¡¨ç¬¦çš„æ˜¾ç¤ºçš„ç©ºæ ¼ä¸ªæ•°
+"ÖÆ±í·ûµÄÏÔÊ¾µÄ¿Õ¸ñ¸öÊı
 set ts=4
 
-"æ§åˆ¶ > å’Œ < çš„ç§»åŠ¨ç©ºæ ¼æ•°ä¸º4ä¸ª
+"¿ØÖÆ > ºÍ < µÄÒÆ¶¯¿Õ¸ñÊıÎª4¸ö
 set sw=4
 
-"åœ¨è°ƒç”¨ :n æˆ– :N å‘½ä»¤æ—¶è‡ªåŠ¨ä¿å­˜å·²ç»ä¿®æ”¹çš„æ–‡ä»¶ã€‚
+"ÔÚµ÷ÓÃ :n »ò :N ÃüÁîÊ±×Ô¶¯±£´æÒÑ¾­ĞŞ¸ÄµÄÎÄ¼ş¡£
 set aw
 
-"æ‹¬å·åŒ¹é…
+"À¨ºÅÆ¥Åä
 "set showmatch
 
-"è®¾ç½®ä»£ç æŠ˜å 
+"ÉèÖÃ´úÂëÕÛµş
 "set foldmethod=marker
 
-"å‘½ä»¤æ˜¾ç¤º
+"ÃüÁîÏÔÊ¾
 set showcmd
 
-"è®¾ç½®gfå‘½ä»¤æœç´¢è·¯å¾„
-set path+=/usr/local/eyou/mail/app/lib/php,/usr/local/eyou/mail/web/php/user
+"ÉèÖÃgfÃüÁîËÑË÷Â·¾¶
+"set path+=/usr/local/eyou/mail/app/lib/php,/usr/local/eyou/mail/web/php/user
 
-"è®¾ç½®çŠ¶æ€æ æ˜¾ç¤ºä¿¡æ¯
+"ÉèÖÃ×´Ì¬À¸ÏÔÊ¾ĞÅÏ¢
 "set statusline=%F%m%r%h%w\[FORMAT=%{&ff}]\[TYPE=%Y]\[ASCII=\%03.3b]\[HEX=\%02.2B]\[POS=%04l,%04v][%p%%]\[LEN=%L]
 set statusline=%F%m%r%h%w\[LINE=%04l]\[COL=%04v]\[LEN=%L]
 set laststatus=2
@@ -59,12 +59,17 @@ set history=400
 " set insert mode with copy or paste
 set pastetoggle=<F11>
 
-" }}}
+" set charset
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
 
-" {{{ plugin profile 
+" cancel backup
+set nobackup
 
+"======================== Customer ==================================
 " phpDocumentor for VIM
-" æŒ‰ ctrl+/ ç»™ä»£ç åŠ æ³¨é‡Š
+" °´ ctrl+/ ¸ø´úÂë¼Ó×¢ÊÍ
 " The php doc plugin  
 " source ~/.vim/php-doc.vim  
 "inoremap <C-I> <ESC>:call PhpDocSingle()<CR>i
@@ -72,17 +77,17 @@ nnoremap <C-I> :call PhpDocSingle()<CR>
 vnoremap <C-I> :call PhpDocRange()<CR> 
 
 " PHP syntax check
-" F5 è¿›è¡Œè¯­æ³•æ£€æŸ¥
-" :cw æ‰“å¼€quickfixçª—å£
-" :ccl å…³é—­quickfixçª—å£
+" F5 ½øĞĞÓï·¨¼ì²é
+" :cw ´ò¿ªquickfix´°¿Ú
+" :ccl ¹Ø±Õquickfix´°¿Ú
 function! PHPCheckSyntax()
-    if !findfile("php", "/usr/local/eyou/toolmail/opt/bin;")
-        setlocal makeprg=/usr/local/eyou/toolmail/opt/bin/php\ -l\ -n\ -d\ html_errors=off
+    if !findfile("php", "/home/tools/tools/php/5.2.17/64/bin")
+        setlocal makeprg=/home/tools/tools/php/5.2.17/64/bin/php\ -l\ -n\ -d\ html_errors=off
     else
         echo "not find bin php script"
         return
     endif
-    
+
     setlocal shellpipe=>
     setlocal errorformat=%m\ in\ %f\ on\ line\ %l
     make %
@@ -94,51 +99,49 @@ map <F5> :call PHPCheckSyntax()<CR>
 " bash_support plugin
 filetype plugin indent on
 
-"pydiction 1.2 python auto complete
-filetype plugin on
-let g:pydiction_location = '~/.vim/complete-dict'
-"defalut g:pydiction_menu_height == 15
-let g:pydiction_menu_height = 20 
+""pydiction 1.2 python auto complete
+"filetype plugin on
+""let g:pydiction_location = '~/.vim/complete-dict'
+""defalut g:pydiction_menu_height == 15
+""let g:pydiction_menu_height = 20 
 
-" }}}
-
-" {{{ shortcut (custom command)
 " fast write
 :nmap fw :w<CR>
 
-" å…¨éƒ¨é€€å‡º
+" È«²¿ÍË³ö
 :nmap zw :wqa<CR>
 :nmap zq :qa!<CR>
 
-"åœ¨normalæ¨¡å¼ä¸‹å…ˆåæŒ‰ä¸‹,sé‡æ–°åŠ è½½.vimrcé…ç½®æ–‡ä»¶
+"ÔÚnormalÄ£Ê½ÏÂÏÈºó°´ÏÂ,sÖØĞÂ¼ÓÔØ.vimrcÅäÖÃÎÄ¼ş
 " ,s = source
 :nmap ,s :source ~/.vimrc<CR>
 
-"åœ¨normalæ¨¡å¼ä¸‹å…ˆåæŒ‰ä¸‹,eå‡†å¤‡æ‰§è¡Œå¤–éƒ¨å‘½ä»¤
+"ÔÚnormalÄ£Ê½ÏÂÏÈºó°´ÏÂ,e×¼±¸Ö´ĞĞÍâ²¿ÃüÁî
 " ,e = exec
 :nmap ,e :!
 
-"æ·»åŠ  file_put_contents å‡½æ•°åŠŸèƒ½
-":nmap ,d :call PhpDocDebug()<CR>
+"Ìí¼Ó file_put_contents º¯Êı¹¦ÄÜ
+":nmap ,d :call
 
-"è®¾ç½®å½“å‰ç›®å½•
+"ÉèÖÃµ±Ç°Ä¿Â¼
 :nmap ,d :set autochdir<CR>
 
-" æ‰§è¡Œsudo make xxx.php.
-function! MakeSourceCode()
-    setlocal makeprg=/home/libo/my/tool/bash/2make
-    setlocal shellpipe=>
+"" Ö´ĞĞsudo make xxx.php.
+function!  MakeSourceCode()
+    setlocal
+    makeprg=/home/libo/my/tool/bash/2make
+    setlocal
+    shellpipe=>
     make %
 endfunction
-:nmap me :call MakeSourceCode()<CR>
+":nmap me :call MakeSourceCode()<CR>
 
-"å¿«é€Ÿæ‰§è¡Œä¿å­˜å¹¶ä¸” make æ–‡ä»¶åˆ°ç›®æ ‡
+"¿ìËÙÖ´ĞĞ±£´æ²¢ÇÒ make ÎÄ¼şµ½Ä¿±ê
 " ,f = fast
-function! FastRelease()
-    set autochdir
-    call MakeSourceCode()
+function!  FastRelease()
+    set
+    autochdir
+    call
+    MakeSourceCode()
 endfunction
-:nmap ,f :call FastRelease()<CR>
-
-" }}}
-
+":nmap ,f :call FastRelease()<CR>
