@@ -12,4 +12,4 @@
 # 通过双引号的方式，把带有空格的文件名组合在一起
 # 避免shell默认行为。
 #find . ! -name 'Makefile*' -type f | while read fn; do grep -rn --col "$1" "$fn"; done
-find . ! -name 'Makefile*' -type f | while read fn; do grep -rHn --col "$1" "$fn"; done
+find . ! -name 'Makefile*' -type f | grep -v ".svn" | while read fn; do grep -rHn --col "$1" "$fn"; done
