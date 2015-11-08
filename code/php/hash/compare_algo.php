@@ -10,6 +10,7 @@ foreach($algos as $algo) {
     list($ss, $si) = explode(' ', $st);
     list($es, $ei) = explode(' ', $et);
     $time[$algo] = $ei + $es - $si - $ss;
+    usleep(100000);
 }
 asort($time, SORT_NUMERIC);
 

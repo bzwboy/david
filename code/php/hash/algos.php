@@ -1,7 +1,7 @@
 <?php
 $hash_list = hash_algos();
 
-$sort = $val = [];
+$sort = $val = array();
 foreach ($hash_list as $algo) {
     $hash = hash($algo, microtime());
     $len = strlen($hash);
