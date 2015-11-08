@@ -61,7 +61,7 @@ mod_files=$( while read  -a line ; do awk -v s="${srcdir}" -v d="${dstdir}" '( $
 echo -e " [Done]"
 
 ### output result.
-logfile="/var/log/diffdir.result"
+logfile="$HOME/logs/diffdir.result"
 { 
 echo -e "\n\nResult:\n\n"
 echo -e "Files Only in [${srcdir}]:"
