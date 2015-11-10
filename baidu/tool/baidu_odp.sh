@@ -299,7 +299,8 @@ make_demo() {
 make_svn() {
     member_branch=("member-api" "member-lib")
 
-    local member_api="$SVN/trunk/${member_branch[0]}"
+    local branch="tuangou_4-3-1542_BRANCH"
+    local member_api="$SVN/branch/member-api/$branch"
     local member_lib="$SVN/trunk/${member_branch[1]}"
 
     # make api 代码
