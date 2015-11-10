@@ -1,0 +1,91 @@
+#!/bin/sh
+
+NMQ="/home/users/libo38/nmq/nmq"
+NMQPROXY="$NMQ/nmqproxy"
+TOPIC="$NMQ/topic"
+PUSHER="$NMQ/pusher"
+
+mytest() {
+    if [ 0 -eq $? ]; then
+        echo "+Ok, $1 succ."
+    else
+        echo "+Err, $1 fail."
+    fi
+}
+
+# nmqproxy
+start_nmqproxy() {
+    $NMQPROXY/bin/nmqproxy_control start
+}
+stop_nmqproxy() {
+    $NMQPROXY/bin/nmqproxy_control stop
+    mytest "stop nmqproxy"
+}
+restart_nmqproxy() {
+    $NMQPROXY/bin/nmqproxy_control restart
+}
+
+# topic
+start_topic() {
+    $TOPIC/bin/topic_control start
+}
+stop_topic() {
+    $TOPIC/bin/topic_control stop
+    mytest "stop topic"
+}
+restart_topic() {
+    $TOPIC/bin/topic_control restart
+}
+
+# pusher
+start_pusher() {
+    $PUSHER/bin/pusher_control start
+}
+stop_pusher() {
+    $PUSHER/bin/pusher_control stop
+    mytest "stop topic"
+}
+restart_pusher() {
+    $PUSHER/bin/pusher_control restart
+}
+
+start() {
+    start_pusher
+    usleep 10000
+    start_topic
+    usleep 10000
+    start_nmqproxy
+}
+stop() {
+    stop_nmqproxy
+    usleep 10000
+    stop_topic
+    usleep 10000
+    stop_pusher
+}
+restart() {
+    restart_nmqproxy
+    usleep 10000
+    restart_topic
+    usleep 10000
+    restart_pusher
+}
+watch() {
+    ps -ef |grep libo38 |egrep -v 'vim|egrep' |egrep 'proxy|nmq|pusher'
+}
+
+help() {
+    echo <<HLP
+./$(basename $0) [start|stop] [nmqproxy|topic|pusher]
+HLP
+}
+
+if [ -z "$1" ]; then
+    help
+fi
+
+if [ -z "$2" ]; then
+    $1
+else
+    $1_$2
+fi
