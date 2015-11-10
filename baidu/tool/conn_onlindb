@@ -1,0 +1,14 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+    echo "$(basename $0) [member|ddbs]"
+    exit 1
+fi
+
+conn_member() {
+    mysql -hst01-dba-dbbk-002.st01 -ulibo38 -p5Wo9044dr0 -P5100 -Dmarket_member
+}
+
+conn_ddbs() {
+    mysql -hsh01-dba-nuomi-ddbsuser00-99.sh01 -ulibo38 -p5Wo9044dr0 -P3100 -Dmarket_member
+}
+conn_$1

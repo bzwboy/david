@@ -1,0 +1,13 @@
+#!/bin/sh
+
+ODP_CONF="$HOME/odp/conf"
+GIT_ODP="$HOME/git/david/baidu/odp"
+
+cp -a $ODP_CONF $GIT_ODP
+if [ 0 -eq $? ]; then
+    echo "+Ok, succ."
+else
+    echo "+Err, fail."
+fi
+
+find $GIT_ODP/conf -name '*.swp' -exec rm {} \;

@@ -1,0 +1,3 @@
+#!/bin/sh
+PRE="http://$HOSTNAME:8080/memberapi"
+curl -v $PRE/$@ 
