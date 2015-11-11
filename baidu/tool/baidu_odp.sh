@@ -301,7 +301,8 @@ make_svn() {
 
     local branch="tuangou_4-3-1542_BRANCH"
     local member_api="$SVN/branch/member-api/$branch"
-    local member_lib="$SVN/trunk/${member_branch[1]}"
+    #local member_lib="$SVN/trunk/${member_branch[1]}"
+    local member_lib="$SVN/branch/member-lib/$branch"
 
     # make api 代码
     cd $member_api
