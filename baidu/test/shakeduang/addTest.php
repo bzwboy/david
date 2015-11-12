@@ -61,8 +61,17 @@ $postData['intToken'] = $intToken;
 #$postData['pointsCtime'] = '1447237022';
 #$postData['srcUniqid'] = '610e8f1ecbd363dbfb44250e6495dae0';
 
+// 本机 online 环境测试
 // http://cp01-rdqa-dev384.cp01.baidu.com:8080/memberapi/points/add
 $url = "http://${hostname}:8080/memberapi/points/add";
+// mktapi 营销api
+#$url = "http://cp01-rdqa04-dev170.cp01.baidu.com:8281/mktapi/redirect/memberapi/points/add";
+// 本机 work 环境测试
+#$url = "http://${hostname}:8081/memberapi/points/add";
+// work-nmq 后端路径
+#$url = "http://${hostname}:8081/memberapi/commit/addpointsnmq";
+#$postData['data'] = json_encode($postData);
+
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HEADER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);

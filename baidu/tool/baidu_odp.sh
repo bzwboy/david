@@ -15,6 +15,7 @@ PRODUCT="baidunuomi"
 APP="memberapi"
 
 ODP="$HOME/odp"
+WORKODP="$HOME/work/odp"
 TAR="$HOME/tar"
 CONF="$HOME/conf"
 SVN="$HOME/svn"
@@ -34,9 +35,9 @@ FILE_ODP="odp_2-4-1.tar.gz"
 # 配置结束
 ########################
 
-if [ ! -d $ODP ]; then
-    mkdir -p $ODP
-fi
+#if [ ! -d $ODP ]; then
+#    mkdir -p $ODP
+#fi
 
 #######################
 # odp 框架/SVN开发代码
@@ -58,7 +59,6 @@ watch() {
     fi
 }
 # }}}
-
 # {{{ install_jumbo()
 install_jumbo() {
     cd $HOME
@@ -91,30 +91,13 @@ install_odp_new() {
     watch "install odp"
 }
 # }}}
-# {{{ install_odp()
-# 安装 odp 框架结构
-install_odp() {
-    #tar zxf $HOME/repo/odp.tgz -C $HOME
-
-    # webserver 配置文件
-    cp $CONF/vhost/php.conf $ODP/webserver/conf/vhost/php.conf
-
-    # 生成 svn 代码安装包配置文件
-    cp $CONF/app_cg/conf.php $ODP/php/phplib/app-cg
-
-    # redis 配置文件
-    cp $CONF/redis.conf $ODP/conf
-
-    # mysql 配置文件
-    cp $CONF/db/cluster.conf $ODP/conf/db
-}
-# }}}
 # {{{ remove_odp()
 remove_odp() {
     rm -fr $ODP
     watch
 }
 # }}}
+
 # {{{ start_odp()
 #
 # 启动 odp 框架
@@ -138,6 +121,18 @@ start_odp_new() {
     $ODP/webserver/loadnginx.sh $opt
 }
 # }}}
+# {{{ start_work_odp()
+#
+# 启动 odp 框架
+#
+start_work_odp() {
+    local opt="start"
+
+    $WORKODP/php/sbin/php-fpm $opt
+    $WORKODP/webserver/loadnginx.sh $opt
+}
+# }}}
+
 # {{{ stop_odp
 #
 # 停止 odp 框架
@@ -159,6 +154,17 @@ stop_odp_new() {
     $ODP/webserver/loadnginx.sh $opt
     $ODP/hhvm/bin/hhvm_control $opt
     $ODP/php/sbin/php-fpm $opt
+}
+# }}}
+# {{{ stop_work_odp
+#
+# 停止 odp 框架
+#
+stop_work_odp() {
+    local opt="stop"
+
+    $WORKODP/webserver/loadnginx.sh $opt
+    $WORKODP/php/sbin/php-fpm $opt
 }
 # }}}
 
@@ -276,7 +282,7 @@ look() {
         exit 1
     fi
 
-    ps -ef |grep $1
+    ps -ef |grep libo38 |grep $1
 }
 # }}}
 
@@ -295,8 +301,23 @@ make_demo() {
     watch "make dev_pc"
 }
 # }}}
-# {{{ make_svn
-make_svn() {
+# {{{ work_demo()
+work_demo() {
+    local app_cg="$WORKODP/php/phplib/app-cg"
+    local out="$app_cg/out/newapp"
+
+    # 生成代码框架到 out 目录内
+    php $app_cg/run.php >/dev/null 2>&1
+    watch "php run.php"
+
+    # make 代码到 odp 开发环境内
+    cd $out
+    make dev_pc >/dev/null 2>&1
+    watch "make dev_pc"
+}
+# }}}
+# {{{ svn2online
+svn2online() {
     member_branch=("member-api" "member-lib")
 
     local branch="tuangou_4-3-1542_BRANCH"
@@ -318,6 +339,31 @@ make_svn() {
     watch "生成 ${member_branch[1]} 安装压缩包"
     cd output
     $CMD_TAR "${member_branch[1]}${FILE_SUFFIX}" -C $ODP >/dev/null 2>&1
+    watch "发布 ${member_branch[1]} 代码"
+}
+# }}}
+# {{{ svn2work
+svn2work() {
+    member_branch=("member-api" "member-lib")
+
+    local branch="tuangou_4-3-1542_BRANCH"
+    local member_api="$SVN/branch/member-api/$branch"
+    local member_lib="$SVN/branch/member-lib/$branch"
+
+    # make api 代码
+    cd $member_api
+    ./build.sh >/dev/null 2>&1
+    watch "生成 ${member_branch[0]} 安装压缩包"
+    cd output
+    $CMD_TAR "${member_branch[0]}${FILE_SUFFIX}" -C $WORKODP >/dev/null 2>&1
+    watch "发布 ${member_branch[0]} 代码"
+
+    # make lib代码
+    cd $member_lib
+    ./build.sh >/dev/null 2>&1
+    watch "生成 ${member_branch[1]} 安装压缩包"
+    cd output
+    $CMD_TAR "${member_branch[1]}${FILE_SUFFIX}" -C $WORKODP >/dev/null 2>&1
     watch "发布 ${member_branch[1]} 代码"
 }
 # }}}
@@ -346,24 +392,60 @@ all_demo() {
 # }}}
 # {{{ help()
 help() {
+    #install   [odp|work_odp|mysql|redis]     安装服务
+    #remove    [odp|work_odp|mysql|redis]     卸载服务
     cat <<H
 ./$(basename $0) 
-    install   [odp|mysql|redis]     安装服务
-    remove    [odp|mysql|redis]     卸载服务
-    start     [odp|mysql|redis]     启动服务
-    stop      [odp|mysql|redis]     停止服务
-    restart   [odp|mysql|redis]     重启服务
+    start     [odp|work_odp|mysql|redis]     启动服务
+    stop      [odp|work_odp|mysql|redis]     停止服务
+    restart   [odp|work_odp|mysql|redis]     重启服务
 
-    make_svn                        发布 SVN 代码到 odp 开发框架中
-    make_demo                       发布 demo 代码到 odp 开发框架中
+    svn2online        发布 SVN 代码到 odp 开发框架中
+    svn2work          发布 SVN 代码到 work/odp 开发框架中
+    make_demo         发布 demo 代码到 odp 开发框架中
+    work_demo         发布 demo 代码到 work/odp 开发框架中
 H
     exit 1
 }
 # }}}
+# {{{ check()
+check() {
+    if [ -z "$1" ]; then
+        help;
+        exit 1;
+    fi
+}
+# }}}
 
 cd $HOME
-if [ -z "$1" ]; then
-    help
-    exit
-fi
-$*
+check $1
+
+case $1 in
+    start)
+        check $2
+        start $2
+        ;;
+    stop)
+        check $2
+        stop $2
+        ;;
+    restart)
+        check $2
+        restart $2
+        ;;
+    svn2online)
+        svn2online
+        ;;
+    svn2work)
+        svn2work
+        ;;
+    make_demo)
+        make_demo
+        ;;
+    work_demo)
+        work_demo
+        ;;
+    *)
+        help;
+        ;;
+esac
