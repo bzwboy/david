@@ -10,4 +10,4 @@ else
     echo "+Err, fail."
 fi
 
-find $GIT_ODP/conf |grep swp |xargs rm
+find . -name '.*.swp' -exec rm {} \;
