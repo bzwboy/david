@@ -183,14 +183,13 @@ remove_redis() {
 # }}}
 # {{{ start_redis()
 start_redis() {
-    cd $HOME
     redis-server $JUMBO/etc/redis.conf
     watch "start redis"
 }
 # }}}
 # {{{ stop_redis()
 stop_redis() {
-    kill `head -n 1 $JUMBO/$RUN/redis.pid`
+    kill `head -n 1 $RUN/redis.pid`
     watch "stop redis"
 }
 # }}}

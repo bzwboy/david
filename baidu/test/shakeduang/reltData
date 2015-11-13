@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# 获取数据库/redis 数据
+ROUTE="/home/users/libo38/git/david/baidu/test/shakeduang"
+SQL="select pass_uid, sum(points_value) total from member_points where from_unixtime(unix_timestamp(), '%Y%m%d')=from_unixtime(create_time, '%Y%m%d') group by pass_uid with rollup;"
+CMD_MYSQL="mysql -h127.0.0.1 -uroot -D market_member"
+
+echo "MySQL Result";
+echo "=======================";
+echo $SQL | $CMD_MYSQL
+echo
+
+echo "Redis result";
+echo "=======================";
+$ROUTE/redisData.php
