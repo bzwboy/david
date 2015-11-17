@@ -319,10 +319,10 @@ work_demo() {
 svn2online() {
     member_branch=("member-api" "member-lib")
 
-    local branch="tuangou_4-3-1542_BRANCH"
+    local branch="tuangou_4-3-1560_BRANCH"
     local member_api="$SVN/branch/member-api/$branch"
     #local member_lib="$SVN/trunk/${member_branch[1]}"
-    local member_lib="$SVN/branch/member-lib/$branch"
+    #local member_lib="$SVN/branch/member-lib/$branch"
 
     # make api 代码
     cd $member_api
@@ -333,12 +333,12 @@ svn2online() {
     watch "发布 ${member_branch[0]} 代码"
 
     # make lib代码
-    cd $member_lib
-    ./build.sh >/dev/null 2>&1
-    watch "生成 ${member_branch[1]} 安装压缩包"
-    cd output
-    $CMD_TAR "${member_branch[1]}${FILE_SUFFIX}" -C $ODP >/dev/null 2>&1
-    watch "发布 ${member_branch[1]} 代码"
+    #cd $member_lib
+    #./build.sh >/dev/null 2>&1
+    #watch "生成 ${member_branch[1]} 安装压缩包"
+    #cd output
+    #$CMD_TAR "${member_branch[1]}${FILE_SUFFIX}" -C $ODP >/dev/null 2>&1
+    #watch "发布 ${member_branch[1]} 代码"
 }
 # }}}
 # {{{ svn2work
