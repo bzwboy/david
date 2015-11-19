@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ps -ef |grep libo38 |egrep -v 'vim|egrep' |egrep 'proxy|nmq|pusher'
