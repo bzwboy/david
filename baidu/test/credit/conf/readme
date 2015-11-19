@@ -1,0 +1,37 @@
+######## odp/conf/app/memberapi/common.conf
+[reids]
+[.credit_limit_value]
+KPRE : member_credit_limit_
+expire_time : 172800
+
+[credit]
+# api 调用比例
+api_ratio : 50
+
+######### odp/conf/app/memberapi/credit.conf
+[umoney]
+key:666666
+
+
+########## odp/conf/ral/services/credit.conf
+# 测试环境配置
+# 在线环境配置可以参考在线平台
+[CamelConfig]
+[.ServiceConfig]
+[..Local]
+[...@Service]
+Name  :  creditUmoney
+DefaultPort : 8088
+#DefaultPort : 3000
+DefaultRetry : 0
+DefaultConnectType  :  1
+DefaultConnectTimeOut : 200
+DefaultReadTimeOut  :  5000
+DefaultWriteTimeOut  :  5000
+[....Converter]
+Name : string
+[....Protocol]
+Name : http
+[....@Server]
+Hostname : cp01-fbu-stable01-1.epc.baidu.com
+Port : 8580
