@@ -20,10 +20,27 @@ $appId = 115;
 $token = Bd_Conf::getAppConf("/common/points/src/${appId}/token");//'f4f6ca2910ce285169d50f95ff3c3e23';
 $time = time();
 $pointsSrc = Bd_Conf::getAppConf("/common/points/src/${appId}/db_points_src");
-$userId = 1;
+$userId = 556869752;
 $hostname = 'cp01-rdqa-dev384.cp01.baidu.com';
 $uniqId = md5($appId . $pointsSrc . $userId . microtime(true) . mt_rand());
 
+$postData = array(
+    'data' => json_encode(array(
+    'appId' => '115',
+    'verChannel' => 'nuomi',
+    'intToken' => '',
+    'intTimestamp' => $time,
+    'baiduId' => '',
+    'userId' => $userId,
+    'srcUniqid' => $uniqId,
+    'pointsValue' => '10',
+    'pointsCtime' => $time,
+    'pointsSrc' => '61',
+    'machine' => $hostname,
+    'phone' => '15811261604',
+)));
+
+/*
 $postData = array(
     'appId' => '115',
     'verChannel' => 'nuomi',
@@ -38,6 +55,7 @@ $postData = array(
     'machine' => $hostname,
     'phone' => '15811261604',
 );
+*/
 function getIntToken($params, $token) {                                          
     ksort ( $params, SORT_STRING ); // 对参数的key以字母顺序排序                         
     $paramsArr = array ();                                                               
@@ -63,7 +81,14 @@ $postData['intToken'] = $intToken;
 
 // 本机 online 环境测试
 // http://cp01-rdqa-dev384.cp01.baidu.com:8080/memberapi/points/add
-$url = "http://${hostname}:8080/memberapi/points/add";
+#$url = "http://${hostname}:8081/memberapi/points/add";
+#$url = "http://${hostname}:8081/memberapi/commit/addpointsnmq";
+
+
+#$url = "http://nj02-orp-app1487.nj02.baidu.com:8220/memberapi/points/add";
+$url = "http://nj02-orp-app1487.nj02.baidu.com:8220/memberapi/commit/addpointsnmq";
+
+
 // mktapi 营销api
 #$url = "http://cp01-rdqa04-dev170.cp01.baidu.com:8281/mktapi/redirect/memberapi/points/add";
 // 本机 work 环境测试
