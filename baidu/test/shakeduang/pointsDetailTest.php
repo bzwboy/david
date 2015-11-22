@@ -1,19 +1,27 @@
 <?php
-/***************************************************************************
- * 
- * Copyright (c) 2015 Baidu.com, Inc. All Rights Reserved
- * 
- **************************************************************************/
- 
- 
- 
-/**
- * @file testAdd.php
- * @author libo38(com@baidu.com)
- * @date 2015/11/10 12:01:54
- * @brief 
- *  
- **/
+/*
+detail接口返回的数据结构`
+array (
+    'errno' => 0,
+    'errmsg' => 'success',
+    'data' => 
+    array (
+        'total' => '11',
+        'points_data' => 
+        array (
+            0 => 
+            array (
+                'points_src' => '61',
+                'points_value' => '10',
+                'points_type' => '1',
+                'points_time' => '1448002885',
+                'points_detail' => '{"order_id":"","coupon_id":"","consume_time":"","pay_money":"","coupon_count":"","costValue":"","entry_src":"shakeduang_add",}',
+                'points_src_desc' => '摇一摇获得',
+            ),
+        ),
+    ),
+)
+ */
 Bd_Init::init('memberapi');
 
 $appId = 115;
@@ -29,7 +37,7 @@ $postData = array(
     'baiduId' => '',
     'pass_uid' => $userId,
     'start' => 0,
-    'offset' => 2,
+    'offset' => 1,
     'terminal' => 'ios',
 );
 
@@ -51,17 +59,21 @@ $url = "http://${hostname}:8081/memberapi/points/detail";
 #$postData['data'] = json_encode($postData);
 
 $ch = curl_init($url);
-curl_setopt($ch, CURLOPT_HEADER, 1);
+#curl_setopt($ch, CURLOPT_HEADER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_VERBOSE, 1);
+#curl_setopt($ch, CURLOPT_VERBOSE, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 $ret = curl_exec($ch);
+var_export(json_decode($ret, 1));
+/*
 if(!$ret) {
     echo 'Curl error: ' . curl_error($ch) . PHP_EOL;
     echo 'Curl error number: ' . curl_errno($ch);
 } else {
     echo '操作完成', PHP_EOL;
 }
+ */
 curl_close($ch);
 
 

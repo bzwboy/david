@@ -3,3 +3,4 @@
 addTest.php     逻辑测试脚本
 redisData.php   获取 redis 数据
 reltData        获取所有数据 mysql/redis
+pointsDetailTest.php    获取积分详细信息接口`
