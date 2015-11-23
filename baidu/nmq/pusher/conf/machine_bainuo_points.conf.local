@@ -1,0 +1,26 @@
+[UbClientConfig]
+[.UbClient]
+
+[..@Service]
+Name : bainuo_points_add
+ConnectAll :  0
+DefaultConnectTimeOut  :  300
+DefaultReadTimeOut  :  3000
+DefaultWriteTimeOut  :  3000
+DefaultMaxConnect  :  10
+DefaultConnectType  :  SHORT
+DefaultPort : 8901
+
+[...CurrStrategy]
+ClassName  :  UbClientStrategy
+
+[...CurrHealthy]
+ClassName  :  UbClientHealthyChecker
+
+#[...@Server]
+#IP : 127.0.0.1
+#Port : 8080
+
+[...@Server]
+IP : 10.94.32.18
+Port : 8081

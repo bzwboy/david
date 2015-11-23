@@ -22,7 +22,7 @@ open : 1
 # 每人每天获得的最大积分
 user_day_max : 1000
 token : f4f6ca2910ce285169d50f95ff3c3e23
-title : 摇一摇活动
+title : 摇一摇积分
 
 [nmq_points_add]
 product : bainuo
@@ -38,98 +38,10 @@ service_name: nmq_points_add
 
 
 ################ odp/conf/ral/services/nmq_points_add.conf ################
-[CamelConfig]
-[.ServiceConfig]
-[..Local]
-[...@Service]
-Name  :  nmq_points_add
-DefaultPort : 9900
-#DefaultPort : 3000
-DefaultRetry : 0
-DefaultConnectType  :  1
-DefaultConnectTimeOut : 200
-DefaultReadTimeOut  :  5000
-DefaultWriteTimeOut  :  5000
-[....@Server]
-IP : 127.0.0.1
-#IP : 10.95.39.43
-#Port : 3000
-[....Protocol]
-Name : nshead
-[....Converter]
-Name : mcpack2
-
-
-################ nmq/nmqproxy/conf/nmqproxy.conf ################
-[topics]
-# shakeduang project
-[.@topic]
-product : bainuo
-topic : points
-enable : 1
-multi_idc : 0
-sub_topic_num : 1
-topic_server_name_prefix : bnpoints
-pusher_server_name_prefix : bnpoints_pusher
-
-
-################ nmq/nmqproxy/conf/ubclient.conf ################
-[UbClientConfig]
-[.UbClient]
-[..@Service]
-Name  :  bnpoints
-ConnectAll :  0
-DefaultConnectTimeOut  :  1000
-DefaultReadTimeOut  :  1000
-DefaultWriteTimeOut  :  1000
-DefaultMaxConnect  :  10
-DefaultRetry  :  5
-#LONG / SHORT 
-#DefaultConnectType  :  LONG
-DefaultConnectType  :  SHORT
-DefaultLinger  :  0
-#声明将要使用的策略类及属性 
-[...CurrStrategy]
-ClassName  :  UbClientStrategy
-[...CurrHealthy]
-ClassName  :  UbClientHealthyChecker
-[...@Server]
-IP : 127.0.0.1
-Port : 9910
-
-[..@Service]
-Name  :  bnpoints_pusher
-ConnectAll :  0
-DefaultConnectTimeOut  :  1000
-DefaultReadTimeOut  :  1000
-DefaultWriteTimeOut  :  1000
-DefaultMaxConnect  :  10
-DefaultRetry  :  5
-#LONG / SHORT 
-#DefaultConnectType  :  LONG
-DefaultConnectType  :  SHORT
-DefaultLinger  :  0
-#声明将要使用的策略类及属性 
-[...CurrStrategy]
-ClassName  :  UbClientStrategy
-[...CurrHealthy]
-ClassName  :  UbClientHealthyChecker
-[...@Server]
-IP : 127.0.0.1
-Port : 9920
-
-
-################ nmq/pusher/conf/pusher_clients.conf  ################
-[UbClientConfig]
-[.UbClient] 
-$include : machine_bainuo_points_add.conf 
-
-
-################ nmq/pusher/conf/pusher_talk.conf ################
-[modules]
-$include : module_bainuo_points_add.conf
-
+见 
+nmq_points_add.conf
 
 ################ 其它 ################
-见 machine_bainuo_points_add.conf
+见
+machine_bainuo_points_add.conf
 module_bainuo_points_add.conf
