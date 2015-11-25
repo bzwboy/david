@@ -27,6 +27,7 @@ Bd_Init::init('memberapi');
 $appId = 115;
 $time = time();
 $userId = 1;
+$userId = 556869752;
 $hostname = 'cp01-rdqa-dev384.cp01.baidu.com';
 
 $postData = array(
@@ -37,7 +38,7 @@ $postData = array(
     'baiduId' => '',
     'pass_uid' => $userId,
     'start' => 0,
-    'offset' => 1,
+    'offset' => 5,
     'terminal' => 'ios',
 );
 

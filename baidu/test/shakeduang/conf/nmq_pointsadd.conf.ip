@@ -15,27 +15,6 @@ Name : nshead
 [....Converter]
 Name : mcpack2
 
-#[....@Server]
-#tag: nj
-#IP : topic-bainuo-shake.ksarch.all 
-#Hostname : topic-bainuo-shake.ksarch.all 
-#Port : 2000
-
-#[....@Server]
-#tag: sh
-#IP : topic-bainuo-shake.ksarch.all 
-#Port : 2000
-
-#[....@Server]
-#tag: szwg
-#IP : topic-bainuo-shake.ksarch.all 
-#Port : 2000
-
-# 本机配置
-#[....@Server]
-#IP : 10.94.32.18
-#Port: 9900
-
 # 线上nmq配置 nj
 [....@Server]
 IP : 10.194.133.41

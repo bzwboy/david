@@ -1,0 +1,8 @@
+[CamelConfig]
+[.ServiceConfig]
+[..Webfoot]
+[...@Service]
+tag : nj01
+Name: group.bainuo-nmqproxy-shake.nuomi.cn
+Rename: nmq_points_add
+Timeout: 1500
