@@ -26,9 +26,26 @@ Bd_Init::init('memberapi');
 
 $appId = 115;
 $time = time();
+
 $userId = 1;
 $userId = 556869752;
-$hostname = 'cp01-rdqa-dev384.cp01.baidu.com';
+$userId = 33896531;
+
+// loal
+#$hostname = 'cp01-rdqa-dev384.cp01.baidu.com';
+#$url = "http://${hostname}:8081/memberapi/points/detail";
+
+// 预览机
+#$hostname = 'nj02-orp-app1487.nj02.baidu.com';
+#$url = "http://${hostname}:8220/memberapi/points/detail";
+
+// online
+$hostname = 'memberapi.int.nuomi.com';
+$url = "http://${hostname}/memberapi/points/detail";
+
+// work-nmq 后端路径
+#$url = "http://${hostname}:8081/memberapi/commit/addpointsnmq";
+#$postData['data'] = json_encode($postData);
 
 $postData = array(
     'appId' => '115',
@@ -38,8 +55,9 @@ $postData = array(
     'baiduId' => '',
     'pass_uid' => $userId,
     'start' => 0,
-    'offset' => 5,
+    'offset' => 10,
     'terminal' => 'ios',
+    'points_src' => '61',
 );
 
 // 重入测试
@@ -47,17 +65,6 @@ $postData = array(
 #$postData['intTimestamp'] = '1447237022';
 #$postData['pointsCtime'] = '1447237022';
 #$postData['srcUniqid'] = '610e8f1ecbd363dbfb44250e6495dae0';
-
-// 本机 online 环境测试
-// http://cp01-rdqa-dev384.cp01.baidu.com:8080/memberapi/points/add
-$url = "http://${hostname}:8081/memberapi/points/detail";
-// mktapi 营销api
-#$url = "http://cp01-rdqa04-dev170.cp01.baidu.com:8281/mktapi/redirect/memberapi/points/add";
-// 本机 work 环境测试
-#$url = "http://${hostname}:8081/memberapi/points/add";
-// work-nmq 后端路径
-#$url = "http://${hostname}:8081/memberapi/commit/addpointsnmq";
-#$postData['data'] = json_encode($postData);
 
 $ch = curl_init($url);
 #curl_setopt($ch, CURLOPT_HEADER, 1);

@@ -16,25 +16,25 @@
  **/
 Bd_Init::init('memberapi');
 
-#$userId = 1;
-$userId = 556869752;
+$userId = 1;
+$userId = 556869752; // teacher
+$userId = 33896531; // me
 
-// 本机 online 环境测试
-// http://cp01-rdqa-dev384.cp01.baidu.com:8080/memberapi/points/add
-$hostname = 'cp01-rdqa-dev384.cp01.baidu.com';
-$url = "http://${hostname}:8081/memberapi/points/add";
+// local
+#$hostname = 'cp01-rdqa-dev384.cp01.baidu.com';
+#$url = "http://${hostname}:8081/memberapi/points/add";
 #$url = "http://${hostname}:8081/memberapi/commit/addpointsnmq";
 
 
-// 预览机链接
+// 预览机
 #$hostname = 'nj02-orp-app1487.nj02.baidu.com';
-#$$url = "http://${hostname}:8220/memberapi/points/add";
+#$url = "http://${hostname}:8220/memberapi/points/add";
 #$url = "http://${hostname}:8220/memberapi/commit/addpointsnmq";
 
 
-// online 连接
-#$hostname = 'memberapi.int.nuomi.com';
-#$url = "http://${hostname}/memberapi/points/add";
+// online
+$hostname = 'memberapi.int.nuomi.com';
+$url = "http://${hostname}/memberapi/points/add";
 
 $appId = 115;
 $token = Bd_Conf::getAppConf("/common/points/src/${appId}/token");//'f4f6ca2910ce285169d50f95ff3c3e23';
