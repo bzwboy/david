@@ -1,4 +1,0 @@
-#!/bin/sh
-
-TOOL="/home/users/libo38/git/david/baidu/tool"
-python $TOOL/upload.py $@
