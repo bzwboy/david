@@ -2,6 +2,7 @@
 *.swp
 *.swo
 .netrwhist
+*.pid
 
 # 忽略 c 语言编译文件
 *.o
