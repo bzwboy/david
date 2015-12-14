@@ -1,5 +1,21 @@
 [CamelConfig]
 [.ServiceConfig]
+
+
+# 开发机不能连接有钱在线接口
+#[..Local]
+#[...@Service]
+#Name : creditUmoney
+#DefaultPort : 8580
+#[....@Server]
+#Host : cp01-finance-app-01.cp01
+#[....@Server]
+#Host : cp01-finance-app-02.cp01
+#[....@Server]
+#Host : cp01-finance-app-03.cp01
+
+
+# 通过 BNS 连接有钱接口
 [..Webfoot]
 [...@Service]
 Name: group.umoneyapp.fpu.cn

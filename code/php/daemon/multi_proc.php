@@ -11,7 +11,7 @@
  */
 
 super_var_init();
-multi_process(2, 0);
+multi_process(3, 0);
 
 $pid = getmypid();
 while(TRUE){
@@ -76,7 +76,7 @@ function multi_process($num, $permanent = true)
             $pid = pcntl_fork();
             /*59*/echo '+++line:', __LINE__, ':fork-pid:', $pid, "\n";
             $child ++ ;
-            if($pid) {
+            if($pid) { // parent process
                 if($child >=$num){
                     /*63*/echo 'line:', __LINE__, ':child:', $child, ':pid:', getmypid(), "\n";
                     pcntl_wait($status);
@@ -85,7 +85,7 @@ function multi_process($num, $permanent = true)
                     /*67*/echo 'line:', __LINE__, ':child:', $child, ':pid:', getmypid(), "\n";
                     usleep(100000);
                 }
-            } else {
+            } else { // child process
                 /*71*/echo 'line:', __LINE__, ':child:', $child, ':pid:', getmypid(), "\n";
                 break;
             }
