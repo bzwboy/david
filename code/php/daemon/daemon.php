@@ -2,7 +2,6 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 error_reporting(E_ALL);
-dl('dio.so');
 
 declare(ticks = 1);
 
@@ -55,7 +54,20 @@ class Daemon
      */
     private $_pids = array();
 
-    private $_logFile = '/tmp/daemon.log';
+    /**
+     * 共享内存配置
+     *
+     */
+    private $_shmConf = array(
+        'mode' => 0644,
+        'size' => 200,
+    );
+
+    /**
+     * 子进程 redis key 前缀
+     *
+     */
+    private static $_subStatPre = 'sub_proc_';
 
     // }}}
     // {{{ functions
@@ -79,7 +91,6 @@ class Daemon
 
         if (is_dir($_SERVER['HOME'])) {
             $this->_pidFile = $_SERVER['HOME'] . '/tmp/proc.pid';
-            $this->_pidFile = $_SERVER['HOME'] . '/tmp/daemon.log';
         }
     }
 
@@ -122,6 +133,11 @@ class Daemon
      */
     public function proc_fork()
     {
+        if ($this->_chk_run()) {
+            echo "+Ok, daemon is processing.\n";
+            exit(0);
+        }
+
         // 忽略终端 I/O信号,STOP信号
         pcntl_signal(SIGTTOU, SIG_IGN);
         pcntl_signal(SIGTTIN, SIG_IGN);
@@ -131,6 +147,7 @@ class Daemon
         // 父进程退出,程序进入后台运行
         $pid = pcntl_fork();
         if (0 > $pid) {
+            self::lg('fork fail', __LINE__);
             exit(1);
         } elseif ($pid) {
             exit(0);
@@ -138,12 +155,14 @@ class Daemon
 
         // 设置子进程为会话组长
         if (0 > posix_setsid()) {
+            self::lg('set session leader fail', __LINE__);
             exit(2);
         }
 
         // 子进程退出, 孙进程没有控制终端了
         $pid = pcntl_fork();
         if (0 > $pid) {
+            self::lg('fork fail', __LINE__);
             exit(1);
         } elseif ($pid) {
             exit(0);
@@ -152,11 +171,39 @@ class Daemon
         chdir($_SERVER['HOME']);
         umask(0);
 
+        self::lg('start fork process', __LINE__, 'succ');
         try {
             $this->_fork_child();
         } catch (Exception $e) {
             exit(5);
         }
+    }
+
+    // }}}
+    // {{{ private function _get_sub_pid()
+
+    /**
+     * 获取子进程 pid
+     *
+     * @return int
+     */
+    private function _get_sub_pid()
+    {
+        return file_get_contents($this->_pidFile);
+    }
+
+    // }}}
+    // {{{ private function _chk_run()
+
+    /**
+     * 检查 daemon 是否在运行
+     *
+     * @return bool
+     */
+    private function _chk_run()
+    {
+        $pid = $this->_get_sub_pid();
+        return (!empty($pid)) ? true : false;
     }
 
     // }}}
@@ -170,6 +217,8 @@ class Daemon
      */
     private function _fork_child()
     {
+        $this->_write_shm(posix_getpid());
+
         $i = 0;
         $isInit = false;
         while (1) {
@@ -177,9 +226,10 @@ class Daemon
 
             $i++;
             if (-1 === $pid) { // error
+                self::lg('fork fail', __LINE__);
                 exit(1);
             } elseif ($pid) { // parent
-                #$this->_write_shm($pid);
+                $this->_write_shm($pid);
 
                 if ($i >= $this->_forkNum) {
                     pcntl_wait($proc_status);
@@ -216,7 +266,7 @@ class Daemon
     public function handler_sigusr1($signo)
     {
         if (posix_kill(0, SIGTERM)) {
-            echo "-Err, 关闭 daemon 进程失败\n";
+            self::lg("-Err, 关闭 daemon 进程失败", __LINE__);
             exit(1);
         }
     }
@@ -231,19 +281,30 @@ class Daemon
      */
     public function handler_sigusr2($signo)
     {
-        xl(__LINE__);
-        /*
+        $this->_read_shm();
+    }
+
+    // }}}
+    // {{{ private function _read_shm()
+
+    /**
+     * 读共享内存
+     *
+     * @return void
+     */
+    private function _read_shm()
+    {
         $shm_key = ftok(__FILE__, 't');
-        $shm_id = shmop_open($shm_key, 'a', 0644, 200);
+        $shm_id = shmop_open($shm_key, 'a', $this->_shmConf['mode'], $this->_shmConf['size']);
         if (!$shm_id) {
-            echo "-Err, 获取进程信息失败";
+            echo "-Err, 获取进程信息失败\n";
             exit(1);
         }
 
         $shm_data = shmop_read($shm_id, 0, 200);
-        $data = serialize($shm_data);
+        $data = unserialize($shm_data);
         print_r($data);
-         */
+        shmop_close($shm_id);
     }
 
     // }}}
@@ -257,15 +318,21 @@ class Daemon
     private function _write_shm($pid)
     {
         $shm_key = ftok(__FILE__, 't');
-        $shm_id = shmop_open($shm_key, 'c', 0644, 200);
-        $shm_data = shmop_read($shm_id, 0, 200);
-        $data = unserialize($shm_data);
+        $shm_id = shmop_open($shm_key, 'c', $this->_shmConf['mode'], $this->_shmConf['size']);
+
+        $shm_data = trim(shmop_read($shm_id, 0, 200));
+        $data = array();
+        if (!empty($shm_data)) {
+            $data = unserialize($shm_data);
+        }
         $data[] = $pid;
         $str = serialize($data);
+
         if (!shmop_write($shm_id, $str, 0)) {
             echo "写入共享内存失败\n";
             exit(1);
         }
+        shmop_close($shm_id);
     }
 
     // }}}
@@ -278,24 +345,38 @@ class Daemon
      */
     private function _write_pid($pid)
     {
-        $fp = dio_open($this->_pidFile, O_WRONLY|O_CREAT, 0644);  
-        dio_truncate($fp, 0);
-        dio_write($fp, $pid); 
-        fclose($fp);
+        if (false === file_put_contents($this->_pidFile, $pid)) {
+            self::lg('insert pid into file fail', __LINE__);
+            exit(1);
+        }
     }
 
     // }}}
-    // {{{ private function _lg()
+    // {{{ public static function lg()
 
     /**
      * 日志记录
      *
+     * @params string $msg
+     * @params int $line
+     * @params string $stat 'fail'|'succ'
      * @return void
      */
-    private function _lg($msg)
+    public static function lg($msg, $line = 0, $stat = 'fail')
     {
+        $logFile = '/tmp/daemon.log';
+        if (is_dir($_SERVER['HOME'])) {
+            $logFile = $_SERVER['HOME'] . '/tmp/daemon.log';
+        }
+
+        $date = date('c');
+        $stat = strtoupper($stat);
+        $msg = "{$date} [{$line}] [{$stat}] {$msg}";
+
+        file_put_contents($logFile, $msg . PHP_EOL, FILE_APPEND);
     }
 
+    // }}}
     // {{{ public function proc_kill()
 
     /**
@@ -305,9 +386,36 @@ class Daemon
      */
     public function proc_kill()
     {
-        if (!posix_kill(file_get_contents($this->_pidFile), SIGUSR1)) {
-            echo "停止进程失败\G";
+        $pid = $this->_get_sub_pid();
+        if (empty($pid)) {
+            echo "+Ok, daemon has shutdown.\n";
+            return;
+        }
+
+        if (!posix_kill($pid, SIGUSR1)) {
+            echo "-Err, 停止进程失败\n";
             exit(1);
+        }
+
+        // 清空
+        file_put_contents($this->_pidFile, '');
+        $this->_clear_shm();
+    }
+
+    // }}}
+    // {{{ private function _clear_shm()
+
+    /**
+     * 清空共享内存
+     *
+     * @return void
+     */
+    private function _clear_shm()
+    {
+        $shm_key = ftok(__FILE__, 't');
+        $shm_id = shmop_open($shm_key, 'a', $this->_shmConf['mode'], $this->_shmConf['size']);
+        if (!shmop_delete($shm_id)) {
+            self::lg('删除共享内存失败', __LINE__, 'fail');
         }
     }
 
@@ -321,10 +429,31 @@ class Daemon
      */
     public function proc_status()
     {
-        if (!posix_kill(file_get_contents($this->_pidFile), SIGUSR2)) {
-            echo "获取进程状态信息失败\G";
+        $pid = $this->_get_sub_pid();
+        if (empty($pid)) {
+            echo "+Ok, daemon has shutdown.\n";
+            return;
+        }
+
+        if (!posix_kill($pid, SIGUSR2)) {
+            echo "获取进程状态信息失败\n";
             exit(1);
         }
+    }
+
+    // }}}
+    // {{{ private function redis_conn()
+
+    /**
+     * 建立 redis 连接
+     *
+     * @return Redis
+     */
+    private function redis_conn()
+    {
+        $redis = new Redis;
+        $redis->connect('localhost', 6379);
+        return $redis;
     }
 
     // }}}
