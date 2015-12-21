@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#
+# 使用绝对路径
+# 不能使用相对路径
+#
 
 ### Help
 ##
@@ -41,11 +45,11 @@ dstdir=$(echo "$2"|sed -e 's#/$##')
 
 ### build md5sum database
 echo -e "building md5sum database ... \c "
-build_md5db "${srcdir}" > /tmp/.srcdir.md5db
-build_md5db "${dstdir}" > /tmp/.dstdir.md5db
+build_md5db "${srcdir}" > $HOME/tmp/.srcdir.md5db
+build_md5db "${dstdir}" > $HOME/tmp/.dstdir.md5db
 wait
-src_files=$( awk '{$1="";print;}' /tmp/.srcdir.md5db )
-dst_files=$( awk '{$1="";print;}' /tmp/.dstdir.md5db )
+src_files=$( awk '{$1="";print;}' $HOME/tmp/.srcdir.md5db )
+dst_files=$( awk '{$1="";print;}' $HOME/tmp/.dstdir.md5db )
 echo -e " [Done]"
 
 ### check add / delete
@@ -57,7 +61,7 @@ echo -e " [Done]"
 
 ### check modify 
 echo -e "checking modify files ... \c "
-mod_files=$( while read  -a line ; do awk -v s="${srcdir}" -v d="${dstdir}" '( $1!="'"${line[0]}"'" && $2=="'"${line[1]}"'" ) {gsub(/ *\.\//,"/",$2);printf "%s%s => %s%s\n",s,$2,d,$2;exit;}' /tmp/.dstdir.md5db ; done < /tmp/.srcdir.md5db )
+mod_files=$( while read  -a line ; do awk -v s="${srcdir}" -v d="${dstdir}" '( $1!="'"${line[0]}"'" && $2=="'"${line[1]}"'" ) {gsub(/ *\.\//,"/",$2);printf "%s%s => %s%s\n",s,$2,d,$2;exit;}' $HOME/tmp/.dstdir.md5db ; done < $HOME/tmp/.srcdir.md5db )
 echo -e " [Done]"
 
 ### output result.
