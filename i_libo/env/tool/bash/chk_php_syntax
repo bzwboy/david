@@ -11,7 +11,7 @@
 #       CREATED:  2012年10月26日 11时39分33秒 CST
 #===============================================================================
 
-CMD_PHP="/usr/local/rhea/opt/bin/php"
+CMD_PHP="php"
 tmp_file=$(mktemp)
 fail=0
 
