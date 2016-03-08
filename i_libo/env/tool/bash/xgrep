@@ -1,17 +1,16 @@
 #!/bin/bash
-# 建立文件并设定访问权限
 
 #
-# 逻辑
-#
-
 # 直接用 xargs 方式，当文件名中出现空格的时候
 # shell会按照空格隔开，当成单独的文件名，出现异常。
-#find . ! -name 'Makefile*' -type f | xargs grep -rn --color "$1"
-
+# find . ! -name 'Makefile*' -type f | xargs grep -rn --color "$1"
+#
 # 通过双引号的方式，把带有空格的文件名组合在一起
 # 避免shell默认行为。
-#find . ! -name 'Makefile*' -type f | while read fn; do grep -rn --col "$1" "$fn"; done
+# find . ! -name 'Makefile*' -type f | while read fn; do grep -rn --col "$1" "$fn"; done
+#
+# xgrep 'search_str' [dir]
+
 if [ -z $2 ]; then
     find . ! -name 'Makefile*' -type f | grep -v ".svn" | while read fn; do grep -irHn --col "$1" "$fn"; done
 else
