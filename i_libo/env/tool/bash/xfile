@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#
+# 依赖 xgrep 和 filter_colon 脚本实现查找自动编辑
+# 功能
+#
+
+if [ -z "$1" ]; then
+    echo "输入查找字符串"
+    exit 1
+fi
+
+ROOT="$HOME/repo/git/david/i_libo/env/tool/bash"
+
+$ROOT/xgrep "$1" $2 |$ROOT/filter_colon

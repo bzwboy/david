@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#
+# 过滤 xgrep 产生的冒号
+# 直接用于 vi 命令
+#
+
+sed 's/:/ /g' |awk '{print $1}' |uniq

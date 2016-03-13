@@ -1,0 +1,8 @@
+实现各种并发的框架原型
+
+原理：
+1、通过 mysql 的 select for update 语句实现并发控制
+风险：可能出现锁表情况
+
+2、通过 mysql 的 update 和 connection_id() 实现并发控制
+风险：并发控制交给 mysql 处理，需要强依赖 mysql
