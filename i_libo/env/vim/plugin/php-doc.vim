@@ -77,12 +77,12 @@ let g:pdv_cfg_CommentHead1 = "/*"
 
 " Default values
 let g:pdv_cfg_Type = "mixed"
-let g:pdv_cfg_Author = "libo <libo@eyou.net>"
+let g:pdv_cfg_Author = "libo <libo38@baidu.com>"
 let g:pdv_cfg_License = ""
-let g:pdv_cfg_Class = "eYou PHP Code"
-let g:pdv_cfg_Package = "Product"
+let g:pdv_cfg_Class = "Baidu PHP Code"
+let g:pdv_cfg_Package = "Bainuo"
 let g:pdv_cfg_Version = ""
-let g:pdv_cfg_Copyright = "Copyright (C) 2008-2015 Minnesota David"
+let g:pdv_cfg_Copyright = "Copyright (C) 2008-2016 Minnesota David"
 
 let g:pdv_cfg_ReturnVal = "void"
 
@@ -246,27 +246,33 @@ func! PhpDocFunc()
 	exe l:txtBOL . g:pdv_cfg_Comment1 . funcname . " " . g:pdv_cfg_EOL
     exe l:txtBOL . g:pdv_cfg_Commentn . g:pdv_cfg_EOL
 
-	while (l:parameters != ",") && (l:parameters != "")
-		" Save 1st parameter
-		let _p = substitute (l:parameters, '\([^,]*\) *, *\(.*\)', '\1', "")
-		" Remove this one from list
-		let l:parameters = substitute (l:parameters, '\([^,]*\) *, *\(.*\)', '\2', "")
-		" PHP5 type hint?
-		let l:paramtype = substitute (_p, g:pdv_re_param, '\1', "")
-		" Parameter name
-		let l:paramname = substitute (_p, g:pdv_re_param, '\2', "")
-		" Parameter default
-		let l:paramdefault = substitute (_p, g:pdv_re_param, '\3', "")
+    " 2016-04-23 添加
+    " 保证没有参数的时候添加 void
+    if (l:parameters == ",") || (l:parameters == "")
+		exe l:txtBOL . g:pdv_cfg_Commentn . "@param void" . g:pdv_cfg_EOL
+    else
+        while (l:parameters != ",") && (l:parameters != "")
+            " Save 1st parameter
+            let _p = substitute (l:parameters, '\([^,]*\) *, *\(.*\)', '\1', "")
+            " Remove this one from list
+            let l:parameters = substitute (l:parameters, '\([^,]*\) *, *\(.*\)', '\2', "")
+            " PHP5 type hint?
+            let l:paramtype = substitute (_p, g:pdv_re_param, '\1', "")
+            " Parameter name
+            let l:paramname = substitute (_p, g:pdv_re_param, '\2', "")
+            " Parameter default
+            let l:paramdefault = substitute (_p, g:pdv_re_param, '\3', "")
 
-        if l:paramtype == ""
-            let l:paramtype = PhpDocType(l:paramdefault)
-        endif
-        
-        if l:paramtype != ""
-            let l:paramtype = " " . l:paramtype
-        endif
-		exe l:txtBOL . g:pdv_cfg_Commentn . "@param" . l:paramtype . " $" . l:paramname . " " . g:pdv_cfg_EOL
-	endwhile
+            if l:paramtype == ""
+                let l:paramtype = PhpDocType(l:paramdefault)
+            endif
+            
+            if l:paramtype != ""
+                let l:paramtype = " " . l:paramtype
+            endif
+            exe l:txtBOL . g:pdv_cfg_Commentn . "@param" . l:paramtype . " $" . l:paramname . " " . g:pdv_cfg_EOL
+        endwhile
+    endif
 
 	if l:static != ""
         exe l:txtBOL . g:pdv_cfg_Commentn . "@static" . g:pdv_cfg_EOL
@@ -468,12 +474,12 @@ endfunc
 " }}}
 " {{{  PhpDocDebug()
 
-func! PhpDocDebug()
-	let commentline = line (".") - 1
-    let l:indent = matchstr(getline("."), '^\ *')
-    exe "norm! " . commentline . "G$"
-    exe g:pdv_cfg_BOL . "file_put_contents('/tmp/libo', var_export($j, true));" . g:pdv_cfg_EOL
-endfunc
+"func! PhpDocDebug()
+"	let commentline = line (".") - 1
+"    let l:indent = matchstr(getline("."), '^\ *')
+"    exe "norm! " . commentline . "G$"
+"    exe g:pdv_cfg_BOL . "file_put_contents('/tmp/libo', var_export($j, true));" . g:pdv_cfg_EOL
+"endfunc
 
 " }}}
 " {{{  PhpDocDefault()
