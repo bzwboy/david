@@ -14,5 +14,19 @@
 if [ -z $2 ]; then
     find . ! -name 'Makefile*' -type f | grep -v ".svn" | while read fn; do grep -irHn --col "$1" "$fn"; done
 else
-    find $2 ! -name 'Makefile*' -type f | grep -v ".svn" | while read fn; do grep -irHn --col "$1" "$fn"; done
+    search_cont="$1"
+
+    if [ $# -gt 2 ]; then
+        j=1
+        for item in "$@"; do
+            if [ $j -lt 2 ]; then
+                j=$[j+1]
+                continue
+            fi
+
+            find $item ! -name 'Makefile*' -type f | grep -v ".svn" | while read fn; do grep -irHn --col "$search_cont" "$fn"; done
+        done
+    else
+        find $2 ! -name 'Makefile*' -type f | grep -v ".svn" | while read fn; do grep -irHn --col "$search_cont" "$fn"; done
+    fi
 fi
