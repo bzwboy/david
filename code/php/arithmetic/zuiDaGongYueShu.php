@@ -6,12 +6,16 @@
 $m = 16;
 $n = 8;
 
-while ($n > 0) {
-    $rem = $m % $n;
-    $m = $n;
-    $n = $rem;
-    #echo $n, "\n";
+function gcd($m, $n) {
+    while ($n > 0) {
+        $rem = $m % $n;
+        $m = $n;
+        $n = $rem;
+        #echo $n, "\n";
+    }
+
+    return $m;
 }
 
-echo 'result: ', $m, "\n";
+echo 'result: ', gcd($m, $n), "\n";
 

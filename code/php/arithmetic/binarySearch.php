@@ -1,6 +1,8 @@
 <?php
 #
 # 二分法查找
+# 时间复杂度 O(logn)
+# 空间复杂度 O(1)
 #
 function bin_search($arr, $low, $high, $value) 
 {
