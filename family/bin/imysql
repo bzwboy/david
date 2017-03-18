@@ -8,4 +8,9 @@
 # ALTER USER 'root'@'localhost' IDENTIFIED BY '';
 #
 
-$HOME/local/mysql/bin/mysql -uroot -S /home/libo/local/run/mysql.sock
+module="mysql57"
+if [ -n $1 ]; then
+    module="$1"
+fi
+
+$HOME/local/${module}/bin/mysql -uroot -S /home/libo/local/run/${module}.sock
