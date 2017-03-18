@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#
+# 启动 mysql 客户端
+#
+# 5.7
+# 首次登陆需要修改密码
+# ALTER USER 'root'@'localhost' IDENTIFIED BY '';
+#
+
+$HOME/local/mysql/bin/mysql -uroot -S /home/libo/local/run/mysql.sock
