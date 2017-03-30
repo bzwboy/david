@@ -7,5 +7,6 @@ fi
 
 # User specific aliases and functions
 
-alias la="ls -al"
+alias la="ls -al --time-style=long-iso"
 alias j="jobs"
+alias ll="ls -lh --time-style=long-iso"
