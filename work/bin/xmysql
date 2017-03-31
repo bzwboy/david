@@ -1,0 +1,30 @@
+#!/bin/sh
+
+base_dir="/home/libo/local"
+mysql_dir="${base_dir}/mysql"
+
+cd $mysql_dir
+
+install_mysql () {
+    ./scripts/mysql_install_db \
+    --user=root \
+    --basedir=/home/libo/local/mysql \
+    --datadir=/home/libo/data/mysql
+}
+
+start_mysql() {
+    ./bin/mysqld_safe \
+    --user=root \
+    --port=3316 \
+    --basedir=${base_dir}/mysql \
+    --datadir=${HOME}/data/mysql \
+    --socket=${base_dir}/run/mysql.sock \
+    --log-error=${HOME}/log/mysql/mysql.err \
+    --pid-file=${base_dir}/run/mysql.pid &
+}
+
+stop_mysql() {
+    ./bin/mysqladmin -uroot -S ${base_dir}/run/mysql.sock shutdown
+}
+
+${1}_mysql

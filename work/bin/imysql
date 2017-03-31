@@ -1,0 +1,6 @@
+#!/bin/sh
+
+base_dir="/home/libo/local"
+mysql_dir="/home/libo/local/mysql"
+
+${mysqldir}/bin/mysql -uroot -S ${base_dir}/run/mysql.sock $*
