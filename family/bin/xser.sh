@@ -37,6 +37,8 @@ restart() {
 # }}}
 
 # {{{ Redis
+# Install
+# make PREFIX=/home/libo/local install
 start_redis() {
     redis-server $local_dir/etc/redis.conf
     myerr

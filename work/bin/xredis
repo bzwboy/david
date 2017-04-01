@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+myerr() {
+    if [ 0 -ne $? ]; then
+        echo -e "\e[41;37m-Err, stop process.\e[0m"
+        exit $?
+    else
+        echo "+Ok, succ"
+    fi
+}
+
+local_dir="/home/libo/local"
+start_redis() {
+    redis-server $local_dir/etc/redis.conf
+    myerr
+}
+stop_redis() {
+    kill -9 $(cat $local_dir/run/redis_6479.pid)
+    myerr
+}
+watch_redis() {
+    ps -ef |grep redis-server
+}
+
+${1}_reids
