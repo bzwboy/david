@@ -109,8 +109,8 @@ filetype plugin indent on
 :nmap fw :w<CR>
 
 " 全部退出
-:nmap zw :wqa<CR>
-:nmap zq :qa!<CR>
+:nmap ww :wqa<CR>
+:nmap qq :qa!<CR>
 
 "在normal模式下先后按下,s重新加载.vimrc配置文件
 " ,s = source

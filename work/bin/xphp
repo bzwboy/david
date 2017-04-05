@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#
+# 控制php/nginx 启动
+#
+
+nginx_restart() {
+    sudo service nginx restart
+}
+
+fpm_restart() {
+    sudo service php-fpm restart
+}
+
+if [ -n "$1" ]; then
+    ${1}_restart
+else
+    echo "$0 [nginx|phpfpm]"
+fi

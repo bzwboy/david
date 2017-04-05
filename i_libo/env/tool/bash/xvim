@@ -10,6 +10,5 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-ROOT="$HOME/repo/git/david/i_libo/env/tool/bash"
-
+ROOT="$HOME/git/david/i_libo/env/tool/bash"
 vim $($ROOT/xgrep "$1" $2 |$ROOT/filter_colon)

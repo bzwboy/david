@@ -12,7 +12,7 @@ myerr() {
 
 local_dir="/home/libo/local"
 start_redis() {
-    redis-server $local_dir/etc/redis.conf
+    ${local_dir}/bin/redis-server $local_dir/etc/redis.conf
     myerr
 }
 stop_redis() {
@@ -20,7 +20,7 @@ stop_redis() {
     myerr
 }
 watch_redis() {
-    ps -ef |grep redis-server
+    ps -ef |grep libo |grep redis-server
 }
 
-${1}_reids
+${1}_redis

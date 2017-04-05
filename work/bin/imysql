@@ -3,4 +3,8 @@
 base_dir="/home/libo/local"
 mysql_dir="/home/libo/local/mysql"
 
-${mysqldir}/bin/mysql -uroot -S ${base_dir}/run/mysql.sock $*
+if [ $# -ne 0 ]; then
+    ${mysqldir}/bin/mysql -uroot -S ${base_dir}/run/mysql.sock $*
+else
+    ${mysqldir}/bin/mysql -uroot -S ${base_dir}/run/mysql.sock yii2
+fi
