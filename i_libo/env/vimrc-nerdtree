@@ -1,0 +1,207 @@
+"显示当前行号
+"set ru
+set nu
+
+"自动切换到当前目录
+"set autochdir
+
+"用4个空格代替tab
+set sts=4
+
+"智能缩进
+set cinoptions=:0,p0,t0
+set cinw=if,else,while,do,for,switch,case
+set formatoptions=tqo
+set cin
+
+"高亮
+syn on
+
+"搜索高亮
+set hls
+set incsearch
+
+"在插入 tab 的时候用一定数量的空格数代替 tab
+set et
+
+"制表符的显示的空格个数
+set ts=4
+
+"控制 > 和 < 的移动空格数为4个
+set sw=4
+
+"在调用 :n 或 :N 命令时自动保存已经修改的文件。
+set aw
+
+"括号匹配
+"set showmatch
+
+"设置代码折叠
+"set foldmethod=marker
+
+"命令显示
+set showcmd
+
+"设置gf命令搜索路径
+"set path+=/usr/local/eyou/mail/app/lib/php,/usr/local/eyou/mail/web/php/user
+
+"设置状态栏显示信息
+"set statusline=%F%m%r%h%w\[FORMAT=%{&ff}]\[TYPE=%Y]\[ASCII=\%03.3b]\[HEX=\%02.2B]\[POS=%04l,%04v][%p%%]\[LEN=%L]
+set statusline=%F%m%r%h%w\[LINE=%04l]\[COL=%04v]\[LEN=%L]
+set laststatus=2
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Sets how many lines of history VIM har to remember
+set history=400
+
+" set insert mode with copy or paste
+set pastetoggle=<F11>
+
+" set charset
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+" cancel backup
+set nobackup
+
+"======================== Customer ==================================
+" phpDocumentor for VIM
+" 按 ctrl+/ 给代码加注释
+" The php doc plugin  
+" source ~/.vim/php-doc.vim  
+"inoremap <C-I> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-I> :call PhpDocSingle()<CR>
+vnoremap <C-I> :call PhpDocRange()<CR> 
+
+" PHP syntax check
+" F5 进行语法检查
+" :cw 打开quickfix窗口
+" :ccl 关闭quickfix窗口
+function! PHPCheckSyntax()
+    if !findfile("php", "/home/tools/tools/php/5.2.17/64/bin")
+        setlocal makeprg=/home/tools/tools/php/5.2.17/64/bin/php\ -l\ -n\ -d\ html_errors=off
+    else
+        echo "not find bin php script"
+        return
+    endif
+
+    setlocal shellpipe=>
+    setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+    make %
+endfunction
+
+" Perform :PHPCheckSyntax()
+map <F5> :call PHPCheckSyntax()<CR>
+
+" bash_support plugin
+filetype plugin indent on
+
+""pydiction 1.2 python auto complete
+"filetype plugin on
+""let g:pydiction_location = '~/.vim/complete-dict'
+""defalut g:pydiction_menu_height == 15
+""let g:pydiction_menu_height = 20 
+
+" fast write
+:nmap fw :w<CR>
+
+" 全部退出
+:nmap zw :wqa<CR>
+:nmap zq :qa!<CR>
+
+"在normal模式下先后按下,s重新加载.vimrc配置文件
+" ,s = source
+:nmap ,s :source ~/.vimrc<CR>
+
+"在normal模式下先后按下,e准备执行外部命令
+" ,e = exec
+:nmap ,e :!
+
+"添加 file_put_contents 函数功能
+":nmap ,d :call
+
+"设置当前目录
+:nmap ,d :set autochdir<CR>
+
+"" 执行sudo make xxx.php.
+function!  MakeSourceCode()
+    setlocal
+    makeprg=/home/libo/my/tool/bash/2make
+    setlocal
+    shellpipe=>
+    make %
+endfunction
+":nmap me :call MakeSourceCode()<CR>
+
+"快速执行保存并且 make 文件到目标
+" ,f = fast
+function!  FastRelease()
+    set
+    autochdir
+    call
+    MakeSourceCode()
+endfunction
+":nmap ,f :call FastRelease()<CR>
+
+
+" =========== Vundle =============== 
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+" =========== NerdTree plugin =============== 
+Plugin 'scrooloose/nerdtree'
+"autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jistr/vim-nerdtree-tabs'
