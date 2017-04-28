@@ -1,0 +1,32 @@
+#!/home/libo/local/bin/expect -f
+
+#
+# 自动登录在线服务器
+#
+
+set passwd libo535478
+set timeout -1
+set domain [lindex $argv 0]
+
+#是否输出服务器日志
+log_user 0
+
+if { $domain eq "" } {
+    spawn ssh -p2538 relay.ethercap.com
+    expect {  
+        "*password:"  
+        {send "$passwd\n"}  
+    }  
+} else {
+    #连接relay机
+    spawn ssh -p2538 relay.ethercap.com
+    expect "*password:"
+    send "$passwd\n"
+    sleep 0.05
+
+    #在relay机发送连接dev服务器命令
+    send "ssh $domain.ethercap.com\r"
+    expect "*password:"
+    send "$passwd\n"
+}
+interact 
