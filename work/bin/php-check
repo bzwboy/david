@@ -4,6 +4,9 @@ git status -s >/dev/null 2>&1
 [ $? -ne 0 ] && { echo "不在git 目录"; exit 10; }
 
 for file in $(git status -s |grep M |awk '{print $2}'); do
+    [ ${file##*\.} != 'php' ] && continue
+
     echo -e "\e[0;32m[$file]\e[0m"
     /usr/local/bin/php -l $file
+    echo
 done
