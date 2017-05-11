@@ -1,0 +1,25 @@
+#!/bin/sh
+
+module_name=$(basename $(pwd))
+
+base_dir="/home/libo/tmp/backup_git"
+[ ! -d $base_dir ] && mkdir -p $base_dir
+
+module_dir="$base_dir/$module_name"
+[ ! -d $module_dir ] && mkdir -p $module_dir
+
+git status -s >/dev/null 2>&1
+[ $? -ne 0 ] && { echo -e "-Err, 当前不在git 目录\n目录：$(pwd)"; exit 100; }
+
+for file in $(git st -s |grep ' M ' |awk '{print $2}'); do
+    #echo $file
+    file_dir=$(dirname $file)
+    [ ! -d "${module_dir}/${file_dir}" ] && mkdir -p "${module_dir}/${file_dir}"
+
+    cp $file "$module_dir/$file"
+    if [ $? -ne 0 ]; then
+        echo "-Err, [$file] not backup"
+    else
+        echo "+Ok, [$file] backup success"
+    fi
+done

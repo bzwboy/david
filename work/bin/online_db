@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#
+# 数据库连接
+#
+
+if [ -z "$*" ]; then
+    mysql -udev -pHdY%YRaM\$@7EsCN -hrm-m5ed42yxg6bx4b3p8.mysql.rds.aliyuncs.com --default-character-set=utf8 wutong
+else
+    mysql -udev -pHdY%YRaM\$@7EsCN -hdb-proj01.ethercap.com --default-character-set=utf8 $*
+fi
