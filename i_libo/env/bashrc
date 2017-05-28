@@ -29,3 +29,26 @@ alias imysql="/usr/local/rhea/opt/mysql/bin/mysql -uroot -S /usr/local/rhea/run/
 lang="/usr/local/eyou/devmail/web/lang"
 
 . $HOME/.git-completion.bash
+
+function find_git_branch {    
+    local dir=. head
+    until [ "$dir" -ef / ]; do
+        if [ -f "$dir/.git/HEAD" ]; then
+            head=$(< "$dir/.git/HEAD")
+            if [[ $head == ref:\ refs/heads/* ]]; then
+                git_branch="(${head#*/*/})"
+            elif [[ $head != '' ]]; then
+                git_branch='(detached)'
+            else
+                git_branch='(unknown)'
+            fi
+            return
+        fi
+        dir="../$dir"
+    done
+    git_branch=''
+}
+PROMPT_COMMAND="find_git_branch;$PROMPT_COMMAND"
+GREEN="\[\033[0;32m\]"
+COLOR_END="\033[0m"
+PS1="[\u@\h:\W$GREEN\$git_branch$COLOR_END]\$ "
