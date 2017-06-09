@@ -3,14 +3,10 @@
 #
 # 启动 mysql 客户端
 #
-# 5.7
-# 首次登陆需要修改密码
-# ALTER USER 'root'@'localhost' IDENTIFIED BY '';
-#
 
-module="mysql57"
-if [ -n $1 ]; then
-    module="$1"
-fi
+port=3306
+[ -n "$1" ] && {
+    port=${1}
+}
 
-$HOME/local/${module}/bin/mysql -uroot -S /home/libo/local/run/${module}.sock
+mysql -S "/home/mysql/mysql-5.7.18/logs/mysqld${port}.sock" -u root

@@ -14,19 +14,9 @@ alias j="jobs -l"
 alias dir="ls -l | grep -e "^d""
 alias xf="ls -l | grep -e "^-""
 
-alias i="git"
-alias idf="git diff"
-alias ist="git status"
-alias ibr="git branch -a"
-alias ici="git commit"
-
-alias svi="sudo vim"
 alias vi="vim"
 alias vd="vimdiff -O"
 
-alias imysql="/usr/local/rhea/opt/mysql/bin/mysql -uroot -S /usr/local/rhea/run/mysql.sock"
-
-lang="/usr/local/eyou/devmail/web/lang"
 
 . $HOME/.git-completion.bash
 
