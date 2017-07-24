@@ -1,0 +1,9 @@
+#!/bin/sh
+
+CONTAINER_ID="cb5c3ed2ff75" 
+
+if [ -n "$1" ]; then
+    CONTAINER_ID="$1"
+fi
+
+docker exec -it $CONTAINER_ID /bin/bash

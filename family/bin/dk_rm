@@ -1,0 +1,26 @@
+#!/bin/sh
+
+#
+# 删除 docker container
+#
+
+IMAGES_NAME=""
+
+help() {
+    echo "  ./$(basename $0) [IMAGE-NAME|REPOSITORY]"
+    exit 0
+}
+
+if [ -z "$1" ]; then 
+    echo "Please input image name..."
+    help
+    exit 1
+fi
+
+IMAGES_NAME="$1"
+CONTAINER=$(docker ps -a |grep "$IMAGES_NAME" |awk '{print $1}')
+if [ -z "$CONTAINER" ]; then
+    echo "the Container of <${IMAGES_NAME}> Images not exist"
+    exit 0
+fi
+docker rm $CONTAINER

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+#
+# 删除镜像
+#
+
+IMAGE_NAME=""
+
+help() {
+    echo "  ./$(basename $0) [IMAGE-NAME|REPOSITORY]"
+    exit 0
+}
+
+if [ -z "$1" ]; then 
+    echo "Please input image name..."
+    help
+    exit 1
+fi
+
+IMAGE_NAME="$1"
+CONTAINER=$(docker ps -a |grep "$IMAGE_NAME" |awk '{print $1}')
+if [ -n "$CONTAINER" ]; then
+    docker rm $CONTAINER
+fi
+
+IMAGE_ID=$(docker images -q ${IMAGE_NAME})
+docker rmi $IMAGE_ID
