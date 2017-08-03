@@ -21,7 +21,10 @@ myerr() {
 BASEDIR="/home/libo/local"
 ETC="${BASEDIR}/etc"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea404b9... 合并配置文件
 ################# redis  #################
 start_redis() {
     cd $BASEDIR

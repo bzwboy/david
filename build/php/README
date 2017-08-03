@@ -1,0 +1,13 @@
+php 模块编译
+PHP Version => 5.4.43
+
+System => Linux ouyuejia 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64
+Build Date => Aug 13 2015 15:19:51
+Configure Command =>  './configure'  '--prefix=/usr/local/php' '--with-config-file-path=/etc' '--with-mysql=/usr/local/mysql' '--with-mysqli=/usr/local/mysql/bin/mysql_config' '--with-iconv-dir' '--with-freetype-dir' '--with-jpeg-dir' '--with-png-dir' '--with-zlib' '--with-libxml-dir' '--enable-xml' '--enable-bcmath' '--enable-sysvsem' '--enable-mbregex' '--enable-fpm' '--enable-mbstring' '--with-mcrypt=/usr/local/include' '--with-gd' '--enable-gd-native-ttf' '--with-openssl' '--with-mhash=/usr/local/include' '--enable-pcntl' '--enable-sockets' '--with-xmlrpc' '--enable-zip' '--enable-soap' '--with-gettext' '--with-config-file-scan-dir=/etc/php.da' '--with-bz2' '--with-curl' '--enable-inline-optimization' '--with-curlwrappers' '--enable-wddx' '--enable-shmop' '--with-pdo-mysql'
+Server API => Command Line Interface
+Virtual Directory Support => disabled
+Configuration File (php.ini) Path => /etc
+Loaded Configuration File => /etc/php.ini
+Scan this dir for additional .ini files => /etc/php.d
+Additional .ini files parsed => /etc/php.d/redis.ini,
+/etc/php.d/xcache.ini

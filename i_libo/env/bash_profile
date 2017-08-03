@@ -6,7 +6,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-LIBO="/home/libo/my/git/david/i_libo"
+LIBO="/home/libo/git/david/i_libo"
 TOOL="${LIBO}/env/tool"
 
 PATH=$HOME/bin:$TOOL/bash:$TOOL/php:$LIBO:$PATH:/usr/sbin
