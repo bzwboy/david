@@ -67,6 +67,13 @@ set encoding=utf-8
 " cancel backup
 set nobackup
 
+" mac clipboard
+"set clipboard=unnamed
+"nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+"imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+"nmap <F2> :.w !pbcopy<CR><CR>
+"vmap <F2> :w !pbcopy<CR><CR>
+
 "======================== Customer ==================================
 " phpDocumentor for VIM
 " 按 ctrl+/ 给代码加注释
