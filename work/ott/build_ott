@@ -1,0 +1,50 @@
+#!/bin/sh
+
+#
+# 发布代码到 dev 环境
+# 方法一
+#   update_file
+#   需要更新的文件，相对路径
+# 方法二
+#   git 获取当前已经提交的最近 commit 变更文件
+
+myexp() {
+    if [ $? -ne 0 ]; then
+        echo "-Err"
+        echo " \033[31m-Err\033[0m"
+        exit $?
+    fi
+}
+
+srcPath="/Users/ott002/svn/ott-uat/www"
+updateFile=""
+if [ "$1" -a -f "$1" ]; then
+    updateFile="$1"
+fi
+
+# deploy code to dst
+make_file() {
+    local _dstPath="$1"
+
+    if [ -z "$updateFile" ]; then
+        files=$(cd $srcPath; svn st |awk '{print $2}')
+    else
+        files=$(cat $updateFile)
+    fi
+
+    for f in $files; do
+        /usr/local/bin/php -l "${srcPath}/${f}" >/dev/null
+        if [ $? -ne 0 ]; then
+            echo "\033[41;37m-Err, syntax error\033[0m"
+            exit 1
+        fi
+
+        echo "${f}\c"
+        rsync -v -e "ssh" --rsync-path="sudo -u www-data rsync" "${srcPath}/${f}" "ubuntu@uat-www:$_dstPath/${f}" >/dev/null
+        myexp
+        echo " \033[32m+Ok\033[0m"
+    done
+}
+
+make_file "/mnt/www/webprogram"
+
