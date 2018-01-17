@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "预处理test.i"
+gcc-7 -E test.c -o test.i
+
+echo "编译test.s"
+gcc-7 -S test.i -o test.s
+
+echo "汇编test.o"
+gcc-7 -c test.c -o test.o
+
+echo "链接"
+gcc-7 -o test test.o

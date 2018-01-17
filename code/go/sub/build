@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /Users/ott002/git/david/code/go/sub
+GOPATH=/Users/ott002/git/david/code/go go run main.go
+#go run main.go

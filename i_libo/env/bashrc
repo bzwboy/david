@@ -17,10 +17,6 @@ alias xf="ls -l | grep -e "^-""
 alias vi="vim"
 alias vd="vimdiff -O"
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ea404b9... 合并配置文件
 . $HOME/.git-completion.bash
 
 function find_git_branch {    

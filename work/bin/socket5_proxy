@@ -1,0 +1,17 @@
+#!/bin/sh
+
+start() {
+    ssh -i /Users/ott002/Downloads/pccw-payment-uat.pem -D 1888 ec2-user@54.169.180.223 -Nf
+}
+watch() {
+    sudo lsof -i :1888
+}
+stop() {
+    kill $(sudo lsof -i :1888 |awk '{print $2}')
+}
+
+if [ -z "$1" ]; then
+    echo "$0 [start|watch|stop]"
+    exit 1
+fi
+$1

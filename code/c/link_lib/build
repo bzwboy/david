@@ -1,0 +1,25 @@
+#!/bin/sh
+
+cd /Users/ott002/git/david/code/c/link_lib
+
+# 将hello.c编译成.o文件
+gcc-7 -c hello.c -o hello.o
+
+# 由.o文件创建静态库
+ar crv libmyhello.a hello.o
+
+# 在程序中使用静态库
+gcc-7 main.c libmyhello.a -o main_a
+
+# 由.o文件创建动态库文件
+gcc-7 -shared -fPIC -o libmyhello.so hello.o
+
+# 在程序中使用动态库
+# right
+gcc-7 -o main_so main.c -L. -lmyhello
+
+# error
+#LD_LIBRARY_PATH=. gcc-7 -o main_so main.c -lmyhello
+
+# right
+#LIBRARY_PATH=. gcc-7 -o main_so main.c -lmyhello

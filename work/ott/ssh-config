@@ -1,0 +1,61 @@
+Host tiaoban
+    HostName 54.169.180.223
+    Port 22
+    User ec2-user
+    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    ForwardAgent Yes
+
+Host nowtv-cron
+    HostName 172.31.74.233
+    Port 22
+    User ec2-user
+    ProxyCommand ssh ec2-user@tiaoban -p 22 nc %h %p
+    ForwardAgent Yes
+
+# ott
+# www.ottuat.com
+Host uat-www
+    HostName 52.74.230.133
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/Downloads/aws-product.pem
+    ForwardAgent Yes
+
+Host uat-mobileapi
+    HostName 54.230.148.119
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/Downloads/aws-product.pem
+    ForwardAgent Yes
+
+# svn
+Host dev-local
+    HostName 52.74.62.214
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/Downloads/aws-product.pem
+    ForwardAgent Yes
+    
+# dev/qa/phpmyadmin
+# payment-backend
+# /var/www/html
+Host devops
+    HostName 52.77.28.125
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    ForwardAgent Yes
+
+Host pay-dev
+    HostName 52.77.225.187
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    ForwardAgent Yes
+
+Host pay-qa
+    HostName 52.77.244.10
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    ForwardAgent Yes
