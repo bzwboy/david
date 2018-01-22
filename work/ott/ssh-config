@@ -1,4 +1,5 @@
 Host tiaoban
+    # 172-31-26-102
     HostName 54.169.180.223
     Port 22
     User ec2-user
@@ -6,7 +7,16 @@ Host tiaoban
     ForwardAgent Yes
 
 Host nowtv-cron
-    HostName 172.31.74.233
+    # 172.31.74.233
+    HostName 13.229.98.16
+    Port 22
+    User ec2-user
+    ProxyCommand ssh ec2-user@tiaoban -p 22 nc %h %p
+    ForwardAgent Yes
+
+Host payment-cron
+    # 172-31-74-72
+    HostName 54.169.137.52
     Port 22
     User ec2-user
     ProxyCommand ssh ec2-user@tiaoban -p 22 nc %h %p
@@ -15,14 +25,8 @@ Host nowtv-cron
 # ott
 # www.ottuat.com
 Host uat-www
+    # 172-16-10-89
     HostName 52.74.230.133
-    Port 22
-    User ubuntu
-    IdentityFile /Users/ott002/Downloads/aws-product.pem
-    ForwardAgent Yes
-
-Host uat-mobileapi
-    HostName 54.230.148.119
     Port 22
     User ubuntu
     IdentityFile /Users/ott002/Downloads/aws-product.pem
@@ -30,6 +34,7 @@ Host uat-mobileapi
 
 # svn
 Host dev-local
+    # 172-32-7-212
     HostName 52.74.62.214
     Port 22
     User ubuntu
@@ -40,6 +45,7 @@ Host dev-local
 # payment-backend
 # /var/www/html
 Host devops
+    # 172-30-0-252
     HostName 52.77.28.125
     User ubuntu
     Port 22
@@ -47,6 +53,7 @@ Host devops
     ForwardAgent Yes
 
 Host pay-dev
+    # 172-30-0-151
     HostName 52.77.225.187
     User ubuntu
     Port 22
@@ -54,6 +61,7 @@ Host pay-dev
     ForwardAgent Yes
 
 Host pay-qa
+    # 172-30-0-187
     HostName 52.77.244.10
     User ubuntu
     Port 22
