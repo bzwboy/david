@@ -1,8 +1,7 @@
-#line 3 "/home/ubuntu/git/david/code/go/goc2p/src/basic/cgo/bar/main.go"
+#line 3 "/home/ubuntu/git/david/code/go/goc2p/src/basic/cgo/bar2/helper.go"
 
 
 
-#include "bar.h"
 
 
 
@@ -24,14 +23,4 @@ __cgo_size_assert(double, 8)
 
 #include <errno.h>
 #include <string.h>
-
-void
-_cgo_a71e76bd3d24_Cfunc_callback(void *v)
-{
-	struct {
-		int r;
-		char __pad4[4];
-	} __attribute__((__packed__, __gcc_struct__)) *a = v;
-	a->r = callback();
-}
 

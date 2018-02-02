@@ -1,3 +1,9 @@
+#line 3 "/home/ubuntu/git/david/code/go/goc2p/src/basic/cgo/bar2/main.go"
+
+
+
+#include "bar.h"
+
 
 
 // Usual nonsense: if x and y are not equal, the type will be invalid
@@ -18,4 +24,14 @@ __cgo_size_assert(double, 8)
 
 #include <errno.h>
 #include <string.h>
+
+void
+_cgo_87b9922e1d1d_Cfunc_callback(void *v)
+{
+	struct {
+		int r;
+		char __pad4[4];
+	} __attribute__((__packed__, __gcc_struct__)) *a = v;
+	a->r = callback();
+}
 

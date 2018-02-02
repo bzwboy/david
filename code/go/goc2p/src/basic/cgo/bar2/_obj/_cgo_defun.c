@@ -41,22 +41,22 @@ void
 	FLUSH(&p);
 }
 
-#pragma cgo_import_static _cgo_a71e76bd3d24_Cfunc_callback
-void _cgo_a71e76bd3d24_Cfunc_callback(void*);
+#pragma cgo_import_static _cgo_87b9922e1d1d_Cfunc_callback
+void _cgo_87b9922e1d1d_Cfunc_callback(void*);
 
 void
 ·_Cfunc_callback(struct{void *y[1];}p)
 {
-	runtime·cgocall(_cgo_a71e76bd3d24_Cfunc_callback, &p);
+	runtime·cgocall(_cgo_87b9922e1d1d_Cfunc_callback, &p);
 }
 
 #pragma cgo_export_dynamic GoFunc
 extern void ·GoFunc();
 
-#pragma cgo_export_static _cgoexp_a71e76bd3d24_GoFunc
+#pragma cgo_export_static _cgoexp_87b9922e1d1d_GoFunc
 #pragma textflag 7
 void
-_cgoexp_a71e76bd3d24_GoFunc(void *a, int32 n)
+_cgoexp_87b9922e1d1d_GoFunc(void *a, int32 n)
 {
 	runtime·cgocallback(·GoFunc, a, n);
 }

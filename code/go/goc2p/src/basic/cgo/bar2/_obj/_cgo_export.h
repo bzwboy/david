@@ -1,5 +1,10 @@
 /* Created by cgo - DO NOT EDIT. */
 
+#line 3 "/home/ubuntu/git/david/code/go/goc2p/src/basic/cgo/bar2/helper.go"
+
+
+
+
 
 
 typedef signed char GoInt8;
