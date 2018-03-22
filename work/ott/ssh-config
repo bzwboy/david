@@ -16,6 +16,15 @@ Host dev-local
     User ubuntu
     IdentityFile /Users/ott002/Downloads/aws-product.pem
     ForwardAgent Yes
+
+Host otti-uat
+    # 172-16-14-67
+    HostName 52.74.41.231
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/Downloads/aws-product.pem
+    ForwardAgent Yes
+
     
 # dev/qa/phpmyadmin
 # payment-backend
@@ -74,4 +83,21 @@ Host testsqs
     User ec2-user
     Port 22
     IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    ForwardAgent Yes
+
+# tuyyo
+Host tuyyo
+    # 10.10.10.49
+    HostName 52.192.90.56
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/Downloads/coreinfo-aws.pem
+    ForwardAgent Yes
+
+Host tuyyo2
+    # 10.10.10.49
+    HostName 54.199.3.133
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/git/david/work/ott/Tuyyo_Group.pem
     ForwardAgent Yes

@@ -16,8 +16,8 @@ start() {
     # create connection
     echo "Create remote connection... "
     proxy=(
-        "-i /Users/ott002/Downloads/pccw-payment-uat.pem ec2-user@54.169.180.223"
-        #"-i /Users/ott002/Downloads/aws-product.pem ubuntu@54.230.148.119"
+#"-i /Users/ott002/Downloads/pccw-payment-uat.pem ec2-user@54.169.180.223"
+        "-i /Users/ott002/Downloads/coreinfo-aws.pem ubuntu@52.192.90.56"
     )
     random=$(($(date +%s)%2))
     random=0
