@@ -37,7 +37,7 @@ make_file() {
     fi
 
     for f in $files; do
-        /usr/local/bin/php -l "${srcPath}/${f}" >/dev/null
+        /usr/bin/php -l "${srcPath}/${f}" >/dev/null
         if [ $? -ne 0 ]; then
             echo "\033[41;37m-Err, syntax error\033[0m"
             exit 1

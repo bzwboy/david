@@ -5,7 +5,7 @@ Host uat-www
     HostName 52.74.230.133
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/Downloads/aws-product.pem
+    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
     ForwardAgent Yes
 
 # svn
@@ -14,7 +14,22 @@ Host dev-local
     HostName 52.74.62.214
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/Downloads/aws-product.pem
+    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
+    ForwardAgent Yes
+
+Host dev-local-2
+    HostName 52.74.111.35
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
+    ForwardAgent Yes
+
+Host dev-local-3
+    # 172-16-5-13
+    HostName 52.76.37.24
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
     ForwardAgent Yes
 
 Host otti-uat
@@ -22,7 +37,7 @@ Host otti-uat
     HostName 52.74.41.231
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/Downloads/aws-product.pem
+    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
     ForwardAgent Yes
 
     
@@ -34,7 +49,7 @@ Host admin
     HostName 54.169.180.223
     Port 22
     User ec2-user
-    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host nowtv-cron
@@ -58,7 +73,7 @@ Host devops
     HostName 52.77.28.125
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host pay-dev
@@ -66,7 +81,7 @@ Host pay-dev
     HostName 52.77.225.187
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host pay-qa
@@ -74,7 +89,7 @@ Host pay-qa
     HostName 54.255.166.96
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host testsqs
@@ -82,7 +97,7 @@ Host testsqs
     HostName 13.250.18.37
     User ec2-user
     Port 22
-    IdentityFile /Users/ott002/Downloads/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 # tuyyo
@@ -91,7 +106,7 @@ Host tuyyo
     HostName 52.192.90.56
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/Downloads/coreinfo-aws.pem
+    IdentityFile /Users/ott002/git/david/work/ott/coreinfo-aws.pem
     ForwardAgent Yes
 
 Host tuyyo2
