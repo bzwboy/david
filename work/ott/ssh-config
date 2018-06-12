@@ -5,7 +5,7 @@ Host uat-www
     HostName 52.74.230.133
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
 # svn
@@ -14,14 +14,14 @@ Host dev-local
     HostName 52.74.62.214
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
 Host dev-local-2
     HostName 52.74.111.35
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
 Host dev-local-3
@@ -29,7 +29,7 @@ Host dev-local-3
     HostName 52.76.37.24
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
 Host otti-uat
@@ -37,21 +37,23 @@ Host otti-uat
     HostName 52.74.41.231
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/david/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
     
 # dev/qa/phpmyadmin
 # payment-backend
 # /var/www/html
+# 跳板机
 Host admin
     # 172-31-26-102
     HostName 54.169.180.223
     Port 22
     User ec2-user
-    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
+# 定时任务
 Host nowtv-cron
     # 172.31.74.233
     HostName 172.31.74.233
@@ -60,20 +62,34 @@ Host nowtv-cron
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
     ForwardAgent Yes
 
+# 定时任务
 Host payment-cron
-    # 172-31-74-72
-    HostName 172.31.74.72
+    # 172.31.97.140
+    HostName 172.31.97.140
     Port 22
     User ec2-user
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
     ForwardAgent Yes
 
+# 生产服务器
+Host payment-prod
+    # i-0fca5d872359b96ee
+    # 172.31.111.122
+    HostName 172.31.111.122
+    Port 22
+    User ec2-user
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+
+# uat / QA 服务器
 Host devops
+    # ec2-52-77-28-125.ap-southeast-1.compute.amazonaws.com
     # 172-30-0-252
     HostName 52.77.28.125
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host pay-dev
@@ -81,7 +97,7 @@ Host pay-dev
     HostName 52.77.225.187
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host pay-qa
@@ -89,7 +105,7 @@ Host pay-qa
     HostName 54.255.166.96
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host testsqs
@@ -97,7 +113,7 @@ Host testsqs
     HostName 13.250.18.37
     User ec2-user
     Port 22
-    IdentityFile /Users/ott002/git/david/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
 # tuyyo
@@ -106,13 +122,6 @@ Host tuyyo
     HostName 52.192.90.56
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/david/work/ott/coreinfo-aws.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
     ForwardAgent Yes
 
-Host tuyyo2
-    # 10.10.10.49
-    HostName 54.199.3.133
-    User ubuntu
-    Port 22
-    IdentityFile /Users/ott002/git/david/work/ott/Tuyyo_Group.pem
-    ForwardAgent Yes
