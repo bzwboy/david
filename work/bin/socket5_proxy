@@ -16,12 +16,12 @@ start() {
     # create connection
     echo "Create remote connection... "
     proxy=(
-#"-i /Users/ott002/Downloads/pccw-payment-uat.pem ec2-user@54.169.180.223"
-"-i /Users/ott002/Downloads/coreinfo-aws.pem ubuntu@52.192.90.56"
+        "/Users/ott002/git/terry/work/ott/pccw-payment-uat.pem ec2-user@54.169.180.223"
+        #"/Users/ott002/git/terry/work/ott/coreinfo-aws.pem ubuntu@52.192.90.56"
     )
     random=$(($(date +%s)%2))
     random=0
-    ssh -D 1888 ${proxy[$random]} -Nf &>/dev/null
+    ssh -D 1888 -i ${proxy[$random]} -Nf &>/dev/null
     myexp
 
     sleep 1
