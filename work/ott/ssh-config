@@ -40,6 +40,12 @@ Host otti-uat
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
+Host redmine
+    HostName wp.viu.com
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
     
 # dev/qa/phpmyadmin
 # payment-backend
@@ -92,6 +98,7 @@ Host devops
     IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
+# give up
 Host pay-dev
     # 172-30-0-151
     HostName 52.77.225.187
@@ -100,6 +107,7 @@ Host pay-dev
     IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
+# give up
 Host pay-qa
     # 172.30.0.180
     HostName 54.255.166.96
