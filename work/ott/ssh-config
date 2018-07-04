@@ -112,7 +112,6 @@ Host devops
 #    ForwardAgent Yes
 
 Host testsqs
-    # 10.10.10.49
     HostName 13.250.18.37
     User ec2-user
     Port 22
@@ -121,7 +120,6 @@ Host testsqs
 
 # tuyyo
 Host tuyyo
-    # 10.10.10.49
     HostName 52.192.90.56
     User ubuntu
     Port 22
@@ -218,4 +216,18 @@ Host payment-0fca5d872359b96ee
     User ec2-user
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
     IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+
+Host otti
+    HostName 52.74.84.7
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
+
+Host terry
+    HostName 18.191.146.157
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/Documents/terry-aws.pem
     ForwardAgent Yes
