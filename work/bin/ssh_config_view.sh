@@ -14,7 +14,7 @@ for item in `cat .ssh/config | grep Host | grep -v \#`; do
         if [ -z $line ]; then
             line=$item
         else
-            printf "%25s  |  %s\n" $line $item
+            printf "%25s  |  %s\n" $line $item >> _tmp_
         fi
     fi
 
@@ -24,3 +24,5 @@ for item in `cat .ssh/config | grep Host | grep -v \#`; do
 
     i=$[i+1]
 done
+sort -b _tmp_
+rm _tmp_

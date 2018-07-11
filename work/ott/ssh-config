@@ -35,7 +35,7 @@ Host dev-local-3
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
-Host otti-uat
+Host uat-otti
     # 172-16-14-67
     HostName 52.74.41.231
     Port 22
@@ -50,6 +50,13 @@ Host redmine
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
     
+Host uat-user
+    # 172.16.13.55
+    HostName 13.251.177.166
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
 
 #########################################
 ######## payment dev/qa machine ######### 
@@ -68,6 +75,7 @@ Host admin
 # 定时任务
 Host cron-nowtv
     # 172.31.74.233
+    # 13.229.98.16
     HostName 172.31.74.233
     Port 22
     User ec2-user
