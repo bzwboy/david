@@ -47,9 +47,17 @@ stop() {
     networksetup -setsocksfirewallproxystate Wi-Fi off
     myexp
 }
+restart() {
+    stop
+
+    echo "delay 2 second ..."
+    sleep 2
+
+    start
+}
 
 if [ -z "$1" ]; then
-    echo "$0 [start|watch|stop]"
+    echo "$0 [start|watch|stop|restart]"
     exit 1
 fi
 $1
