@@ -128,7 +128,16 @@ Host testsqs
 
 # tuyyo
 Host tuyyo
-    HostName 52.192.90.56
+    # 172-31-20-237
+    HostName 18.179.247.111
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
+    ForwardAgent Yes
+
+Host tuyyo2
+    # 54-199-3-133
+    HostName 13.230.90.146
     User ubuntu
     Port 22
     IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
@@ -239,3 +248,4 @@ Host terry
     Port 22
     IdentityFile /Users/ott002/Documents/terry-aws.pem
     ForwardAgent Yes
+

@@ -1,0 +1,5 @@
+** longtooth.tgz **
+是tuyyo 给的C 版本接受程序，方便开发go 版本功能。
+安装：
+(1) 解压到/home/ubuntu 目录下
+(2) ln -s /home/ubuntu/longtooth/lt5_linux/official-demo-stream/recv/recv
