@@ -127,7 +127,7 @@ Host testsqs
     ForwardAgent Yes
 
 # tuyyo
-Host tuyyo
+Host uat-tuyyo
     # 172-31-20-237
     HostName 18.179.247.111
     User ubuntu
@@ -135,14 +135,13 @@ Host tuyyo
     IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
     ForwardAgent Yes
 
-Host tuyyo2
-    # 54-199-3-133
-    HostName 13.230.90.146
+Host prod-tuyyo
+    # 172-31-20-237
+    HostName api2.tuyyo.xyz
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
+    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
     ForwardAgent Yes
-
 
 #########################################
 ######## payment product machine ######## 
