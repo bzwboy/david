@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Deprecated, transfer to zsc."
+exit 1
+
 PATH_OTT=$HOME/svn/ott/cms/trunk
 PATH_UAT=$HOME/svn/ott-uat
 
@@ -12,7 +15,6 @@ uat_modules=(
     "./www/common/modules/User.php"
     "./cms/common/modules/User.php"
     "./track-cluster/common/modules/User.php"
-    "./ccs/common/models/User.php"
     "./console/common/modules/User.php"
     )
 
@@ -69,7 +71,9 @@ myrm() {
     local file="$1"
 
     echo "rm $file ..."
-    svn rm $file
+    if [ -f $file ]; then
+        svn rm $file
+    fi
     myexp
     echo
 }
