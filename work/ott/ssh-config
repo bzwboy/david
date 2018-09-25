@@ -242,7 +242,7 @@ Host otti
     ForwardAgent Yes
 
 Host terry
-    HostName 18.191.146.157
+    HostName 18.218.105.67
     User ubuntu
     Port 22
     IdentityFile /Users/ott002/Documents/terry-aws.pem
