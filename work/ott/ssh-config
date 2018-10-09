@@ -11,6 +11,14 @@ Host uat-www
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
+Host qaauto
+    # 172-16-10-89
+    HostName 13.251.215.61
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
+
 # svn
 Host dev-local
     # 172-32-7-212
@@ -242,7 +250,7 @@ Host otti
     ForwardAgent Yes
 
 Host terry
-    HostName 18.218.105.67
+    HostName 18.224.8.162
     User ubuntu
     Port 22
     IdentityFile /Users/ott002/Documents/terry-aws.pem
