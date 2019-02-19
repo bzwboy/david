@@ -11,9 +11,17 @@ Host uat-www
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
-Host qaauto
+Host qaauto-user
     # 172-16-10-89
     HostName 13.251.215.61
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
+
+Host qa-user
+    # 172-16-10-89
+    HostName 18.136.162.25
     Port 22
     User ubuntu
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
@@ -38,6 +46,14 @@ Host dev-local-2
 Host dev-local-3
     # 172-16-5-13
     HostName 52.76.37.24
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
+
+Host prod-otti
+    # 172-16-14-67
+    HostName 52.76.81.25
     Port 22
     User ubuntu
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
@@ -239,13 +255,12 @@ Host prod-peripheral
     IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
-Host prod-ottuser
+Host prod-user
     HostName 13.250.33.140
     Port 22
     User ubuntu
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
-
 
 Host uat-ottreporter
     HostName 18.136.12.195
@@ -253,3 +268,19 @@ Host uat-ottreporter
     User ubuntu
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
+
+# redemption.viu.com
+Host redemption
+    HostName 52.77.117.209
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
+
+Host liutie
+    HostName 54.250.143.165
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
+    ForwardAgent Yes
+
