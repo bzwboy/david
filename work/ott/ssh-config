@@ -240,12 +240,12 @@ Host otti
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
     ForwardAgent Yes
 
-#Host terry
-#    HostName 18.224.8.162
-#    User ubuntu
-#    Port 22
-#    IdentityFile /Users/ott002/Documents/terry-aws.pem
-#    ForwardAgent Yes
+Host terry
+    HostName 18.188.132.92
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/Documents/terry-aws.pem
+    ForwardAgent Yes
 
 Host prod-peripheral
     HostName 172.31.104.4
