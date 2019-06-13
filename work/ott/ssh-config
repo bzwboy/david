@@ -20,6 +20,7 @@ Host qaauto-user
     ForwardAgent Yes
 
 Host qa-user
+    # dqq5mzomnsyc2.cloudfront.net
     # 172-16-10-89
     HostName 18.136.162.25
     Port 22
@@ -109,7 +110,7 @@ Host cron-nowtv
 # 定时任务
 Host cron-payment
     # 172.31.97.140
-    HostName 172.31.97.140
+    HostName 172.31.110.104
     Port 22
     User ec2-user
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
@@ -148,85 +149,8 @@ Host prod-tuyyo
 # i-00a7eb8d3b63b341c
 # private ip: 172.31.106.105
 # public ip: 13.228.79.53
-Host payment-00a7eb8d3b63b341c
-    HostName 172.31.106.105
-    Port 22
-    User ec2-user
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-# i-00b8c97ca968984d5
-# private ip: 172.31.105.253
-# public ip: 13.229.77.180
-Host payment-00b8c97ca968984d5
-    HostName 172.31.105.253
-    Port 22
-    User ec2-user
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-# i-01b663403f9bbcb80
-# private ip: 172.31.107.208
-# public ip: 13.229.78.203
-Host payment-01b663403f9bbcb80
-    HostName 172.31.107.208
-    Port 22
-    User ec2-user
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-# i-08042e5315b824c30
-# private ip: 172.31.105.95
-# public ip: 54.169.180.184
-Host payment-08042e5315b824c30
-    HostName 172.31.105.95
-    Port 22
-    User ec2-user
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-# i-0952a1824bfc3b94a
-# private ip: 172.31.100.207
-# public ip: 54.179.136.181
-Host payment-0952a1824bfc3b94a
-    HostName 172.31.100.207
-    Port 22
-    User ec2-user
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-# i-00920568813da0942
-# private ip: 172.31.105.221
-# public ip: 54.254.192.140
-Host payment-00920568813da0942
-    HostName 172.31.105.221
-    Port 22
-    User ec2-user
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-# i-003f60a40101c9729
-# private ip: 172.31.103.12
-# public ip: 54.255.182.84
-Host payment-003f60a40101c9729
-    HostName 172.31.103.12
-    Port 22
-    User ec2-user
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-# i-0fca5d872359b96ee
-# private ip: 172.31.111.122
-# public ip: 54.255.241.60
-Host payment-0fca5d872359b96ee
-    HostName 172.31.111.122
+Host prod-payment
+    HostName 172.31.105.27
     Port 22
     User ec2-user
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
@@ -264,6 +188,20 @@ Host prod-user
 
 Host uat-ottreporter
     HostName 18.136.12.195
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
+
+Host qa-ottreporter
+    HostName 3.1.199.205
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    ForwardAgent Yes
+
+Host prod-ottreporter
+    HostName 18.138.27.2
     Port 22
     User ubuntu
     IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
