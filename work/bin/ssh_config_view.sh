@@ -7,18 +7,12 @@
 cd $HOME
 
 i=1
-for item in `cat .ssh/config | grep Host | grep -v \#`; do
+for item in `cat .ssh/config | grep -w -E 'Host|HostName' | grep -v \#`; do
     if [ $(($i%2)) -eq 0 ]; then
         if [ -z $line ]; then
             line=$item
         else
-            if [ -n "$1" ]; then
-                if [ -n "`echo $line | grep $1`"  ]; then
-                    printf "%25s  |  %s\n" $line $item >> _tmp_
-                fi
-            else
-                printf "%25s  |  %s\n" $line $item >> _tmp_
-            fi
+            printf "%25s  |  %s\n" $line $item >> _tmp_
         fi
     fi
 
@@ -34,5 +28,5 @@ if [ ! -f _tmp_ ]; then
 fi
 printf "%25s     %s\n" "Host" "Ip"
 echo "       ------------------------------------------"
-sort -b _tmp_
+sort -b _tmp_ | grep --col -E "$1"
 rm _tmp_
