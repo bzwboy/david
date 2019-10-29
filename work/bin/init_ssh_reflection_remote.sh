@@ -23,6 +23,18 @@ init_env() {
 }
 
 myhelp() {
+    echo -e "Usage:
+    `basename $0` [command] [service]
+Description:
+    command
+        watch
+        run
+        stop
+        start
+    service
+        see below service list\n
+Service list:"
+
     printf "%25s     %s\n" "Service" "Port"
     echo "       ------------------------------------------"
     for item in ${mapping_port[@]}; do
@@ -101,7 +113,7 @@ handle_port() {
 start_pc_redis_uat() {
     echo "Launch the port ${G_PORT}..."
     if [ $G_PID -eq 0 ]; then
-        ssh -N -f -L ${G_PORT}:dev-payment-center.8sttox.0001.apse1.cache.amazonaws.com:6379 devops
+        ssh -N -f -L ${G_PORT}:dev-payment-center.8sttox.0001.apse1.cache.amazonaws.com:6379 uat
         myexp
     else
         echo "+Ok, port[${G_PORT}] has been launched. pid[$G_PID]."

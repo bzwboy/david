@@ -196,6 +196,14 @@ Host prod-tuyyo-go
     IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
     ForwardAgent Yes
 
+Host prod-tuyyo-go-new
+    # 172-31-20-237
+    HostName 52.69.1.20
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
+    ForwardAgent Yes
+
 #########################################
 ######## payment product machine ######## 
 #########################################
@@ -203,7 +211,7 @@ Host prod-tuyyo-go
 # private ip: 172.31.106.105
 # public ip: 13.228.79.53
 Host prod-payment
-    HostName 172.31.105.27
+    HostName 172.31.106.157
     Port 22
     User ec2-user
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
@@ -278,6 +286,13 @@ Host redemption
 
 Host liutie
     HostName 54.250.143.165
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
+    ForwardAgent Yes
+
+Host outline
+    HostName 54.249.38.32
     Port 22
     User ubuntu
     IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
