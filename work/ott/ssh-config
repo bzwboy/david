@@ -190,14 +190,6 @@ Host prod-tuyyo-php
 
 Host prod-tuyyo-go
     # 172-31-20-237
-    HostName 3.112.42.177
-    User ubuntu
-    Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
-    ForwardAgent Yes
-
-Host prod-tuyyo-go-new
-    # 172-31-20-237
     HostName 52.69.1.20
     User ubuntu
     Port 22
