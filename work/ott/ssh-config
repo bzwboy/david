@@ -207,32 +207,13 @@ Host prod-tuyyo-go
 #########################################
 ######## payment product machine ######## 
 #########################################
-# i-00a7eb8d3b63b341c
-# private ip: 172.31.106.105
-# public ip: 13.228.79.53
-Host prod-payment
-    HostName 172.31.101.100
-    Port 22
-    User ubuntu
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-Host prod-payment-EBT
-    HostName 172.31.105.0
-    Port 22
-    User ec2-user
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
-
-Host prod-payment-codedeploy
-    HostName 172.31.98.93
-    Port 22
-    User ubuntu
-    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
-    ForwardAgent Yes
+#Host prod-payment
+#    HostName 172.31.101.100
+#    Port 22
+#    User ubuntu
+#    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+#    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+#    ForwardAgent Yes
 
 Host otti
     HostName 52.74.84.7
@@ -306,3 +287,75 @@ Host outline
     IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
     ForwardAgent Yes
 
+# -- Auto --
+Host prod-payment-code_172.31.111.56
+    HostName 172.31.111.56
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.100.26
+    HostName 172.31.100.26
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.96.156
+    HostName 172.31.96.156
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.100.14
+    HostName 172.31.100.14
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.96.22
+    HostName 172.31.96.22
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.100.205
+    HostName 172.31.100.205
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.99.112
+    HostName 172.31.99.112
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.98.21
+    HostName 172.31.98.21
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.97.198
+    HostName 172.31.97.198
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+Host prod-payment-code_172.31.106.239
+    HostName 172.31.106.239
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+# -- End --
