@@ -188,6 +188,14 @@ Host prod-tuyyo-php
     IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
     ForwardAgent Yes
 
+Host prod-tuyyo-php-new
+    # 172-31-20-237
+    HostName 13.230.4.188
+    User ubuntu
+    Port 22
+    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
+    ForwardAgent Yes
+
 Host prod-tuyyo-go
     # 172-31-20-237
     HostName 52.69.1.20
@@ -203,15 +211,23 @@ Host prod-tuyyo-go
 # private ip: 172.31.106.105
 # public ip: 13.228.79.53
 Host prod-payment
-    HostName 172.31.106.157
+    HostName 172.31.101.100
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+
+Host prod-payment-EBT
+    HostName 172.31.105.0
     Port 22
     User ec2-user
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
     IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
     ForwardAgent Yes
 
-Host prod-payment-7.1
-    HostName 172.31.30.179
+Host prod-payment-codedeploy
+    HostName 172.31.98.93
     Port 22
     User ubuntu
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
