@@ -1,0 +1,123 @@
+#!/bin/sh
+
+#echo "Deprecated, transfer to zsc."
+#exit 1
+
+PATH_OTT=$HOME/svn/ott-prod
+PATH_UAT=$HOME/svn/ott-uat
+
+sync_modules=(
+    "./ams/common/modules/User.php"
+    "./www/common/modules/User.php"
+    "./console/common/modules/User.php"
+    )
+
+sync_models=(
+    "./www/frontendph/models/User.php"
+    "./www/frontendsg/models/User.php"
+    "./www/frontendth/models/User.php"
+    "./www/frontendall/models/User.php"
+   )
+
+sync() {
+    local source="$1"
+    local target=$2
+
+    for f in ${target[*]}; do
+        echo "$f ..."
+        cp $source $f
+        myexp
+        echo
+    done
+    echo 
+}
+
+sync2() {
+    local source="$1"
+    local target=$2
+
+    for f in ${target[*]}; do
+        echo "$f ..."
+        cp $source $f
+        myexp
+        echo
+
+        flag=`echo $f | sed 's/.*frontend\([a-z]*\)\/.*/\1/g'`
+        # mac 下特殊处理
+        # -i 后要增加空字符串
+        sed -i "" "s/namespace frontend/namespace frontend${flag}/g" $f
+    done
+    echo 
+}
+
+mycp() {
+    local file="$1"
+
+    echo "cp $2 ..."
+    cp $PATH_UAT/$file $PATH_OTT/$file
+    myexp
+    echo
+}
+
+myrm() {
+    local file="$1"
+
+    echo "rm $file ..."
+    if [ -f $file ]; then
+        svn rm $file
+    fi
+    myexp
+    echo
+}
+
+myexp() {
+    if [ $? -eq 0 ]; then
+        echo "+Ok"
+    else
+        echo "-Err"
+    fi
+}
+
+## sync uat to prod ##
+echo ">> Sync uat to prod <<"
+cd $PATH_OTT
+
+# common
+mycp app/common/modules/User.php
+
+# app
+mycp app/api/controllers/UserController.php
+mycp app/app/modules/v1/controllers/OperatorsController.php
+mycp app/app/modules/v1/controllers/TvController.php
+mycp app/app/modules/v1/controllers/UserController.php
+
+# ams
+mycp ams/ams/models/User.php
+mycp ams/ams/controllers/PaymentController.php
+mycp ams/ams/controllers/UtilsController.php
+
+# www
+mycp www/frontend/models/User.php
+mycp www/frontend/controllers/UserController.php
+mycp www/frontend/controllers/VodController.php
+
+mycp www/frontendph/models/User.php
+mycp www/frontendph/controllers/HomeController.php
+mycp www/frontendph/controllers/UserController.php
+mycp www/frontendph/controllers/VodController.php
+
+mycp www/frontendsg/models/User.php
+mycp www/frontendsg/controllers/HomeController.php
+mycp www/frontendsg/controllers/UserController.php
+mycp www/frontendsg/controllers/VodController.php
+
+mycp www/frontendth/models/User.php
+
+# sync prod files
+echo ">> Sync prod files <<"
+echo "Sync modules ..."
+sync "./app/common/modules/User.php" "${sync_modules[*]}"
+
+echo "Sync models ..."
+sync2 "./www/frontend/models/User.php" "${sync_models[*]}"
+

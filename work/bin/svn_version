@@ -1,0 +1,36 @@
+#!/bin/sh
+
+PATH_PROD="$HOME/svn/ott-prod"
+
+file=(
+"ams/ams/controllers/PaymentController.php"
+"ams/ams/controllers/UtilsController.php"
+"ams/ams/models/User.php"
+"ams/common/modules/User.php"
+"app/api/controllers/UserController.php"
+"app/app/modules/v1/controllers/OperatorsController.php"
+"app/app/modules/v1/controllers/TvController.php"
+"app/app/modules/v1/controllers/UserController.php"
+"app/common/modules/User.php"
+"console/common/modules/User.php"
+"www/common/modules/User.php"
+"www/frontend/controllers/UserController.php"
+"www/frontend/controllers/VodController.php"
+"www/frontend/models/User.php"
+"www/frontendph/controllers/HomeController.php"
+"www/frontendph/controllers/UserController.php"
+"www/frontendph/controllers/VodController.php"
+"www/frontendph/models/User.php"
+"www/frontendsg/controllers/HomeController.php"
+"www/frontendsg/controllers/UserController.php"
+"www/frontendsg/controllers/VodController.php"
+"www/frontendsg/models/User.php"
+"www/frontendth/models/User.php"
+     )
+
+cd $PATH_PROD
+for f in "${file[@]}"; do
+    echo "--> $f"
+    svn log -- $f | head -n 2
+    echo
+done

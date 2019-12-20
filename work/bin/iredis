@@ -1,6 +1,12 @@
 #!/bin/sh
 
-base_dir="/home/libo/local/bin"
+# To have launchd start redis now and restart at login:
+#   brew services start redis
+# Or, if you don't want/need a background service you can just run:
+#   redis-server /usr/local/etc/redis.conf
 
-cd $base_dir
-./redis-cli -p 6479
+if [ -n "${1}" ]; then
+    brew services "${1}" redis 
+else
+    brew services list redis 
+fi

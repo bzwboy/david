@@ -1,10 +1,23 @@
 #!/bin/sh
 
-base_dir="/home/libo/local"
-mysql_dir="/home/libo/local/mysql"
+start() {
+    brew services start mysql
+}
 
-if [ $# -ne 0 ]; then
-    ${mysqldir}/bin/mysql -uroot -S ${base_dir}/run/mysql.sock $*
+restart() {
+    brew services restart mysql
+}
+
+stop() {
+    brew services stop mysql
+}
+
+login() {
+    /usr/local/opt/mysql/bin/mysql -h127.0.0.1 -uroot -pott@123456 --prompt "\u@local \d> "
+}
+
+if [ -n "${1}" ]; then
+    ${1}
 else
-    ${mysqldir}/bin/mysql -uroot -S ${base_dir}/run/mysql.sock yii2
+    login
 fi

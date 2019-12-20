@@ -1,0 +1,63 @@
+#!/bin/sh
+
+myexp() {
+    if [ $? -eq 0 ]; then
+        echo "+Ok"
+    else
+        echo "-Err"
+    fi
+}
+start() {
+    if [ -n "$(watch)" ]; then
+        echo "+Ok"
+        exit 0
+    fi
+
+    # create connection
+    echo "Create remote connection... "
+    proxy=(
+        "/Users/ott002/git/terry/work/ott/pccw-payment-uat.pem ec2-user@54.169.180.223"
+        #"/Users/ott002/git/terry/work/ott/coreinfo-aws.pem ubuntu@52.192.90.56"
+    )
+    random=$(($(date +%s)%2))
+    random=0
+    ssh -D 1888 -i ${proxy[$random]} -Nf &>/dev/null
+    myexp
+
+    sleep 1
+
+    # open socks
+    # netwnetworksetup -getsocksfirewallproxy Wi-Fi
+    echo "Open socks proxy... "
+    networksetup -setsocksfirewallproxy Wi-Fi 127.0.0.1 1888
+    networksetup -setsocksfirewallproxystate Wi-Fi on
+    myexp
+}
+watch() {
+    sudo lsof -i :1888
+}
+stop() {
+    echo "Close remote connection... "
+    watch |grep -v PID |awk '{print $2}' |uniq |xargs kill &>/dev/null
+    myexp
+
+    sleep 1
+
+    echo "Close socks proxy... "
+    networksetup -setsocksfirewallproxystate Wi-Fi off
+    myexp
+}
+restart() {
+    stop
+
+    echo "delay 2 second ..."
+    sleep 2
+
+    start
+}
+
+if [ -z "$1" ]; then
+    echo "$0 [start|watch|stop|restart]"
+    exit 1
+fi
+$1
