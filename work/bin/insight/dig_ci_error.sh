@@ -6,8 +6,8 @@
 
 cd $HOME/tmp/logs/ci_error
 
-for file in `ls *.log`; do
-    echo "--> $file"
+for file in `ls ${1}*`; do
+   echo "--> $file"
 
    cat "$file" | grep -v Function | grep -v '<\?php' \
        | grep -v 'Undefined variable' | grep -v 'Undefined index' | grep -v 'Severity: Notice' \

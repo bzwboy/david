@@ -8,13 +8,7 @@ cd $HOME/tmp/logs/cloud_front
 
 gunzip *.gz
 
-if [ -z "$1" ]; then
-    path="."
-else
-    path="$1"
-fi
-
-for file in `ls "$path"`; do
+for file in `ls *${1}*`; do
     echo "--> $file"
 
     while read line; do

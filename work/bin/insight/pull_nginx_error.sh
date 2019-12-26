@@ -28,7 +28,7 @@ for priv_ip in `ec2_list|awk '{print $3}'`; do
     echo "--> Pull ${priv_ip} log..."
 
     log_name="${LOG_PATH}/${batch_prefix}-${priv_ip}.log"
-    scp ubuntu@prod-payment-code_${priv_ip}:/var/log/nginx/${prefix}.log $log_name
+    scp ubuntu@prod-pc-webapi_${priv_ip}:/var/log/nginx/${prefix}.log $log_name
 
     echo " ==> ${priv_ip} <==" >> $ERR_LOG
     cat $log_name >> $ERR_LOG

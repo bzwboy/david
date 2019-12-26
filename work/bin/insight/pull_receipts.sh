@@ -23,7 +23,7 @@ for priv_ip in `ec2_list|awk '{print $3}'`; do
     echo "--> Pull ${priv_ip} log..."
 
     log_name="${LOG_PATH}/${batch_prefix}-${priv_ip}-${cur_date}.log"
-    scp ubuntu@prod-payment-code_${priv_ip}:/tmp/${prefix}-${cur_date} $log_name
+    scp ubuntu@prod-pc-webapi_${priv_ip}:/tmp/${prefix}-${cur_date} $log_name
 
     echo
 done
