@@ -6,7 +6,9 @@
 
 cd $HOME/tmp/logs/cloud_front
 
-gunzip *.gz
+if [ -n "`ls *.gz 2>/dev/null`" ]; then
+    gunzip *.gz
+fi
 
 for file in `ls *${1}*`; do
     echo "--> $file"
