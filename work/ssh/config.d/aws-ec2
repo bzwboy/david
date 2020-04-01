@@ -1,0 +1,9 @@
+
+Host prod-payment
+    HostName 172.31.101.100
+    Port 22
+    User ubuntu
+    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
+    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    ForwardAgent Yes
+
