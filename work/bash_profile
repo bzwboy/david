@@ -1,0 +1,75 @@
+#source ~/.profile
+#source ~/.bashrc
+source ~/.git-completion.bash
+
+# enables colorin the terminal bash shell export
+export CLICOLOR=1
+# sets up thecolor scheme for list export
+export LSCOLORS=gxfxcxdxbxegedabagacad
+# sets up theprompt color (currently a green similar to linux terminal)
+#export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$ '
+# enables colorfor iTerm
+export TERM=xterm-color
+export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials
+
+function find_git_branch {
+    local dir=. head
+    until [ "$dir" -ef / ]; do
+        if [ -f "$dir/.git/HEAD" ]; then
+            head=$(< "$dir/.git/HEAD")
+            if [[ $head == ref:\ refs/heads/* ]]; then
+                git_branch="(${head#*/*/})"
+            elif [[ $head != '' ]]; then
+                git_branch='(detached)'
+            else
+                git_branch='(unknown)'
+            fi
+            return
+        fi
+        dir="../$dir"
+    done
+    git_branch=''
+}
+PROMPT_COMMAND="find_git_branch;$PROMPT_COMMAND"
+GREEN="\[\033[01;31m\]"
+COLOR_END="\033[0m"
+export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$GREEN\$git_branch$COLOR_END\$ "
+
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+#export PATH="/usr/local/opt/gettext/bin:$PATH"
+#export JAVA_HOME=/Library/Java/Home
+
+# Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+
+# customer
+export PATH=$PATH:$HOME/bin:/usr/local/go/bin:$HOME/bin/insight
+
+export GOPATH=/Users/ott002/go
+#export GOROOT=/usr/local/Cellar/go/1.9.2/libexec 
+export GOROOT=/usr/local/go
+export HISTCONTROL=ignoredups
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+alias ll='ls -lh'
+alias la='ls -alh'
+
+alias tf='tail -f'
+alias sc='ssh_config'
+alias hd='head'
+alias tl='tail'
+alias sf='init_port'
+
+#####################################################
+#             Must be at the bottom                 #
+#             Movement Prohibition                  #
+#####################################################
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
