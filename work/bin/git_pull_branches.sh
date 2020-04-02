@@ -15,7 +15,7 @@ curr_branch=`git branch -a | grep '*' | awk '{print $2}'`
 sleep 1
 
 for br in ${branch[@]}; do
-    echo "-- $br --"
+    echo "-- `echo "$br" | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}'` --"
     git checkout $br
     if [ $? -ne 0 ]; then
         git checkout $br
@@ -28,5 +28,5 @@ for br in ${branch[@]}; do
     echo
 done
 
-echo "-- restore origin branch --"
+echo "-- Return origin branch --"
 git checkout $curr_branch
