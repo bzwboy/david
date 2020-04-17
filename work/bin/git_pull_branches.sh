@@ -14,7 +14,7 @@ exec 1>&2
 curr_branch=`git branch -a | grep '*' | awk '{print $2}'`
 sleep 1
 
-for br in ${branch[@]}; do
+for br in `git br | cut -d ' ' -f 2,3 | sed 's/ //g'`; do
     echo "-- `echo "$br" | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}'` --"
     git checkout $br
     if [ $? -ne 0 ]; then
