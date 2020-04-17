@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#
+# Check php syntax
+#
+
+git st -s | awk '{print $2}' | while read f; do php -l $f; done
