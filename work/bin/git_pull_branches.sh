@@ -1,24 +1,26 @@
 #!/usr/bin/env bash
 
-branch=(
-    "DevelopBranch"
-    "qa"
-    "staging"
-    "prod"
-)
-base_dir="/Users/ott002/git/payment-backend"
+BASE_DIR="$HOME/git/payment-backend"
 
-cd $base_dir
+cd $BASE_DIR
 exec 1>&2
+
+run () {
+    local cmd="${1}"
+
+    echo $cmd
+    eval $cmd
+}
 
 curr_branch=`git branch -a | grep '*' | awk '{print $2}'`
 sleep 1
 
 for br in `git br | cut -c 3-`; do
     echo "-- `echo "$br" | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}'` --"
-    git checkout $br
+
+    run "git checkout $br"
     if [ $? -ne 0 ]; then
-        git checkout $br
+        run "git checkout $br"
     fi
 
     git pull origin $br

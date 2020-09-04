@@ -22,7 +22,7 @@ SSH_CONFIG_FILE="$HOME/.ssh/config"
 
 install() {
     echo "Get ec2 instance list..."
-    ec2_list="`./ec2_list|awk '{print $3}'`"
+    ec2_list="`ssh -l ubuntu staging-pc "/home/ubuntu/libo/bin/insight/ec2_list" | awk '{print $2}'`"
 
     echo "# -- Auto --" >> $SSH_CONFIG_FILE
     for priv_ip in $ec2_list; do

@@ -1,7 +1,12 @@
 #!/bin/sh
 
 #
-# 获取prod nginx error log
+# Obtain CI Framework Log
+#
+# Usage
+#   pull_ci_error.sh [date]
+# e.g.
+#   pull_ci_error.sh 20200425
 #
 
 cd $HOME/bin/insight
