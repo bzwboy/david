@@ -12,10 +12,17 @@ run () {
     eval $cmd
 }
 
-curr_branch=`git branch -a | grep '*' | awk '{print $2}'`
-sleep 1
+br_list=(
+    "DevelopBranch"
+    "prod"
+    "qa"
+    "staging"
+)
 
-for br in `git br | cut -c 3-`; do
+cur_br="`git br | grep \* | cut -c 3-`"
+
+#for br in `git br | cut -c 3-`; do
+for br in ${br_list[@]}; do
     echo "-- `echo "$br" | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}'` --"
 
     run "git checkout $br"
@@ -31,4 +38,4 @@ for br in `git br | cut -c 3-`; do
 done
 
 echo "-- Return origin branch --"
-git checkout $curr_branch
+git checkout $cur_br
