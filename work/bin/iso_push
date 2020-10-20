@@ -1,3 +1,48 @@
 #!/bin/bash
 
-git ci -a -m tmp && git pull && git push
+cd $HOME/git/iso
+
+
+git co master
+
+red_echo () {
+    echo -e "\033[31m${1}\033[0m"
+}
+
+red_echo "--> Commit..."
+git add .
+git ci -a -m "commit-`date +%c`"
+echo -e "+Ok\n"
+
+red_echo "--> Push to remote master branch..."
+git pull origin master
+git push origin master
+echo -e "+Ok\n"
+
+#red_echo "--> Push to remote libo branch..."
+#git push origin libo
+#git fetch --all
+#git rebase origin/master
+#echo -e "+Ok\n"
+#
+#red_echo "--> Rebase origin master..."
+#git fetch --all
+#git rebase origin/master
+#echo -e "+Ok\n"
+#
+#red_echo "--> Change branch into master..."
+#git co master
+#git pull origin master
+#echo -e "+Ok\n"
+#
+#red_echo "--> Merge libo branch into master branch..."
+##git merge --squash --ff libo -m "merge-`date +%c`"
+#git merge libo -m "merge-`date +%c`"
+#echo -e "+Ok\n"
+#
+#red_echo "--> Push to remote master branch..."
+#git push origin master
+#echo -e "+Ok\n"
+#
+#git co libo
+
