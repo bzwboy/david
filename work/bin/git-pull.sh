@@ -37,5 +37,5 @@ for br in ${br_list[@]}; do
     echo
 done
 
-echo "-- Return origin branch --"
+echo "-- Return original branch --"
 git checkout $cur_br
