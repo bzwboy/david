@@ -16,6 +16,7 @@ br_list=(
     "DevelopBranch"
     "prod"
     "qa"
+    "qa_autoqa"
     "staging"
 )
 
