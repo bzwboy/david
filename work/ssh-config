@@ -7,7 +7,7 @@ Host vuclip_gcp
     HostName 13.228.241.191
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-dev-vuclip-gcp-bastion.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-dev-vuclip-gcp-bastion.pem
     ForwardAgent Yes
 
 # ott
@@ -17,7 +17,7 @@ Host uat-www
     HostName 52.74.230.133
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host www-cron
@@ -25,7 +25,7 @@ Host www-cron
     HostName 52.74.198.231
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host qa-www
@@ -33,7 +33,7 @@ Host qa-www
     HostName 52.220.24.252
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host qaauto-user
@@ -41,7 +41,7 @@ Host qaauto-user
     HostName 13.251.215.61
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host qa-user
@@ -50,7 +50,7 @@ Host qa-user
     HostName 18.136.162.25
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 # Svn
@@ -59,14 +59,14 @@ Host dev-local
     HostName 52.74.62.214
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host dev-local-2
     HostName 52.74.111.35
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host dev-local-3
@@ -74,7 +74,7 @@ Host dev-local-3
     HostName 52.76.37.24
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host prod-otti
@@ -82,7 +82,7 @@ Host prod-otti
     HostName 52.76.81.25
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host uat-otti
@@ -90,14 +90,14 @@ Host uat-otti
     HostName 52.74.41.231
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host redmine
     HostName wp.viu.com
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
     
 Host uat-user
@@ -105,7 +105,7 @@ Host uat-user
     HostName 13.251.177.166
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host autoqa-web
@@ -113,7 +113,7 @@ Host autoqa-web
     HostName 52.77.204.15 
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host qa-web
@@ -121,7 +121,7 @@ Host qa-web
     HostName 52.220.38.82
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 #########################################
@@ -135,7 +135,7 @@ Host admin
     HostName 54.169.180.223
     Port 22
     User ec2-user
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host ftp
@@ -143,14 +143,14 @@ Host ftp
     HostName 52.220.9.116
     Port 22
     User ec2-user
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host prod-pc-cronjob-nowtv
     HostName 172.31.74.251
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ProxyCommand ssh -q -A admin -W %h:%p
     ForwardAgent Yes
 
@@ -158,7 +158,7 @@ Host prod-pc-cronjob-payment
     HostName 172.31.96.209
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ForwardAgent Yes
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
 
@@ -166,7 +166,7 @@ Host data
     HostName 172.31.70.86
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ForwardAgent Yes
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
 
@@ -174,7 +174,7 @@ Host staging
     HostName 18.139.249.37
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ForwardAgent Yes
 
 # Uat/Qa 服务器
@@ -184,14 +184,14 @@ Host uat
     HostName 52.77.28.125
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host elk
     HostName 18.138.53.125
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ForwardAgent Yes
 
 # Tuyyo
@@ -200,7 +200,7 @@ Host uat-tuyyo
     HostName 18.179.247.111
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
+    IdentityFile /Users/ott002/iCloud/viu/Tuyyo_Group.pem
     ForwardAgent Yes
 
 Host prod-tuyyo-php
@@ -208,7 +208,7 @@ Host prod-tuyyo-php
     HostName api2.tuyyo.xyz
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
+    IdentityFile /Users/ott002/iCloud/viu/Tuyyo_Group.pem
     ForwardAgent Yes
 
 Host prod-tuyyo-php-new
@@ -216,7 +216,7 @@ Host prod-tuyyo-php-new
     HostName 13.230.4.188
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
+    IdentityFile /Users/ott002/iCloud/viu/Tuyyo_Group.pem
     ForwardAgent Yes
 
 Host prod-tuyyo-go
@@ -224,7 +224,7 @@ Host prod-tuyyo-go
     HostName 52.69.1.20
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/Tuyyo_Group.pem
+    IdentityFile /Users/ott002/iCloud/viu/Tuyyo_Group.pem
     ForwardAgent Yes
 
 #########################################
@@ -235,14 +235,14 @@ Host prod-tuyyo-go
 #    Port 22
 #    User ubuntu
 #    ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-#    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+#    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
 #    ForwardAgent Yes
 
 Host otti
     HostName 52.74.84.7
     User ubuntu
     Port 22
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host vpn
@@ -257,35 +257,35 @@ Host prod-peripheral
     Port 22
     User ec2-user
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     ForwardAgent Yes
 
 Host prod-user
     HostName 13.250.33.140
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host uat-ottreporter
     HostName 18.136.12.195
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host qa-ottreporter
     HostName 3.1.199.205
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host prod-ottreporter
     HostName 18.138.27.2
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 # redemption.viu.com
@@ -293,21 +293,21 @@ Host redemption
     HostName 52.77.117.209
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/aws-product.pem
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
 Host liutie
     HostName 54.250.143.165
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
+    IdentityFile /Users/ott002/iCloud/viu/coreinfo-aws.pem
     ForwardAgent Yes
 
 Host outline
     HostName 54.249.38.32
     Port 22
     User ubuntu
-    IdentityFile /Users/ott002/git/terry/work/ott/coreinfo-aws.pem
+    IdentityFile /Users/ott002/iCloud/viu/coreinfo-aws.pem
     ForwardAgent Yes
 
 Host ncloud-ss
@@ -342,7 +342,7 @@ Host prod-pc-webapi_172.31.96.238
     Port 22
     User ubuntu
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     StrictHostKeyChecking no
     ForwardAgent Yes
 Host prod-pc-webapi_172.31.98.61
@@ -350,7 +350,7 @@ Host prod-pc-webapi_172.31.98.61
     Port 22
     User ubuntu
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     StrictHostKeyChecking no
     ForwardAgent Yes
 Host prod-pc-webapi_172.31.96.82
@@ -358,7 +358,7 @@ Host prod-pc-webapi_172.31.96.82
     Port 22
     User ubuntu
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     StrictHostKeyChecking no
     ForwardAgent Yes
 # -- End --
