@@ -12,7 +12,7 @@ host_tpl() {
     Port 22
     User ubuntu
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
-    IdentityFile /Users/ott002/git/terry/work/ott/pccw-payment-uat.pem
+    IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     StrictHostKeyChecking no
     ForwardAgent Yes"
 }
