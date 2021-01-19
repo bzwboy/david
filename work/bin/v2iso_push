@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd $HOME/git/iso
+
+git co iso_v2
+echo
+
+red_echo () {
+    echo -e "\033[31m${1}\033[0m"
+}
+
+red_echo "--> Commit..."
+git add . && git ci -a -m "commit-`date +%c`"
+echo -e "+Ok\n"
+
+red_echo "--> Push to remote master branch..."
+git pull origin iso_v2
+git push origin iso_v2
+echo -e "+Ok\n"
+
