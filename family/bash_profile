@@ -11,15 +11,6 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 # enables colorfor iTerm
 export TERM=xterm-color
 
-export GOPATH=/Users/ott002/go
-export GOROOT=/usr/local/go
-
-export PATH="/usr/local/sbin:$PATH"
-export PATH=$HOME/bin:$HOME/bin/insight:$HOME/fbin:/usr/local/go/bin:$PATH
-export PATH=$HOME/.composer/vendor/bin:$PATH
-export PATH="/usr/local/opt/php@7.1/bin:$PATH"
-export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
-
 export HISTCONTROL=ignoredups
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials
@@ -56,6 +47,28 @@ PROMPT_COMMAND="find_git_branch;$PROMPT_COMMAND"
 GREEN="\[\033[01;31m\]"
 COLOR_END="\033[0m"
 export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$GREEN\$git_branch$COLOR_END\$ "
+
+
+#################################################
+#                     PATH                      #
+#################################################
+# Go
+export GOPATH=/Users/ott002/go
+export GOROOT=/usr/local/opt/go@1.14/libexec
+export PATH="/usr/local/opt/go@1.14/bin:$PATH"
+
+# Php
+export PATH="/usr/local/opt/php@7.1/bin:$PATH"
+export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
+
+# MySQL
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+# Local
+export PATH=$HOME/bin:$HOME/bin/insight:$HOME/fbin:$PATH
+export PATH=$HOME/.composer/vendor/bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
+
 
 #####################################################
 #             Must be at the bottom                 #

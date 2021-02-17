@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#
+# Temporary go builder
+#
+
+myexp () {
+    if [ $? -eq 0 ]; then
+        echo "+Ok, ${1}"
+    else
+        echo "-Err, ${1}"
+    fi
+}
+
+GOBIN=$HOME/tmp go install "${1}"
+myexp "[`TZ=Hongkong date +%c`] completed!"
