@@ -211,17 +211,9 @@ Host prod-tuyyo-php
     IdentityFile /Users/ott002/iCloud/viu/Tuyyo_Group.pem
     ForwardAgent Yes
 
-Host prod-tuyyo-php-new
-    # 172-31-20-237
-    HostName 13.230.4.188
-    User ubuntu
-    Port 22
-    IdentityFile /Users/ott002/iCloud/viu/Tuyyo_Group.pem
-    ForwardAgent Yes
-
 Host prod-tuyyo-go
     # 172-31-20-237
-    HostName 3.112.221.166
+    HostName 18.183.180.244
     User ubuntu
     Port 22
     IdentityFile /Users/ott002/iCloud/viu/Tuyyo_Group.pem
