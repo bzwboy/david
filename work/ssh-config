@@ -10,11 +10,43 @@ Host vuclip_gcp
     IdentityFile /Users/ott002/iCloud/viu/pccw-dev-vuclip-gcp-bastion.pem
     ForwardAgent Yes
 
+# 1ViuCMS
+Host 1viu-dev2-api
+    # 172.16.13.55
+    HostName 54.254.43.140
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
+    ForwardAgent Yes
+
+Host 1viu-dev2-cron
+    # 172.16.13.55
+    HostName 18.138.0.39
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
+    ForwardAgent Yes
+
+Host 1viu-dev2-cms
+    # 172.16.13.55
+    HostName 54.179.237.72
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
+    ForwardAgent Yes
+
 # ott
 # www.ottuat.com
-Host uat-www
+Host uat-mobileapi
     # 172-16-10-89
     HostName 52.74.230.133
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
+    ForwardAgent Yes
+
+Host uat-cms
+    HostName 52.74.81.223
     Port 22
     User ubuntu
     IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
@@ -328,25 +360,28 @@ Host iso
     Port 22
     User root
 
+Host bitbucket.org
+    IdentityFile ~/.ssh/id_rsa_bitbucket
+
 # -- Auto --
-Host prod-pc-webapi_172.31.96.238
-    HostName 172.31.96.238
+Host prod-pc-webapi_172.31.97.189
+    HostName 172.31.97.189
     Port 22
     User ubuntu
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
     IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     StrictHostKeyChecking no
     ForwardAgent Yes
-Host prod-pc-webapi_172.31.98.61
-    HostName 172.31.98.61
+Host prod-pc-webapi_172.31.100.135
+    HostName 172.31.100.135
     Port 22
     User ubuntu
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
     IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
     StrictHostKeyChecking no
     ForwardAgent Yes
-Host prod-pc-webapi_172.31.96.82
-    HostName 172.31.96.82
+Host prod-pc-webapi_172.31.109.1
+    HostName 172.31.109.1
     Port 22
     User ubuntu
     ProxyCommand ssh ec2-user@admin -p 22 nc %h %p
