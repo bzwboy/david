@@ -164,7 +164,7 @@ Host qa-web
 # 跳板机
 Host admin
     # 172-31-26-102
-    HostName 54.169.180.223
+    HostName 3.1.224.144
     Port 22
     User ec2-user
     IdentityFile /Users/ott002/iCloud/viu/pccw-payment-uat.pem
