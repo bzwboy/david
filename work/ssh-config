@@ -27,6 +27,22 @@ Host 1viu-dev2-cron
     IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
     ForwardAgent Yes
 
+Host 1viu-dev2-cron2
+    # 172.16.13.55
+    HostName 18.138.161.53
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
+    ForwardAgent Yes
+
+Host cron3
+    # 172.16.13.55
+    HostName 54.254.24.248
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
+    ForwardAgent Yes
+
 Host 1viu-dev2-cms
     # 172.16.13.55
     HostName 54.179.237.72
