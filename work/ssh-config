@@ -10,8 +10,10 @@ Host vuclip_gcp
     IdentityFile /Users/ott002/iCloud/viu/pccw-dev-vuclip-gcp-bastion.pem
     ForwardAgent Yes
 
+#########################################
 # 1ViuCMS
-Host 1viu-dev2-api
+#########################################
+Host dev_1viu-api
     # 172.16.13.55
     HostName 54.254.43.140
     Port 22
@@ -19,7 +21,7 @@ Host 1viu-dev2-api
     IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
     ForwardAgent Yes
 
-Host 1viu-dev2-cron
+Host dev_1viu-cron
     # 172.16.13.55
     HostName 18.138.0.39
     Port 22
@@ -27,7 +29,7 @@ Host 1viu-dev2-cron
     IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
     ForwardAgent Yes
 
-Host 1viu-dev2-cron2
+Host dev_1viu-cron2
     # 172.16.13.55
     HostName 18.138.161.53
     Port 22
@@ -35,7 +37,7 @@ Host 1viu-dev2-cron2
     IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
     ForwardAgent Yes
 
-Host 1viu-dev2-cron3
+Host dev_1viu-cron3
     # 172.16.13.55
     HostName 54.254.24.248
     Port 22
@@ -43,7 +45,7 @@ Host 1viu-dev2-cron3
     IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
     ForwardAgent Yes
 
-Host 1viu-dev2-cms
+Host dev-1viu-cms
     # 172.16.13.55
     HostName 54.179.237.72
     Port 22
@@ -51,8 +53,18 @@ Host 1viu-dev2-cms
     IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
     ForwardAgent Yes
 
+Host qa_1viu-cron
+    # 172.16.13.55
+    HostName 54.179.82.228
+    Port 22
+    User ubuntu
+    IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
+    ForwardAgent Yes
+    
+######################################
 # ott
 # www.ottuat.com
+######################################
 Host uat-mobileapi
     # 172-16-10-89
     HostName 52.74.230.133
@@ -101,7 +113,9 @@ Host qa-user
     IdentityFile /Users/ott002/iCloud/viu/aws-product.pem
     ForwardAgent Yes
 
+#########################################
 # Svn
+#########################################
 Host dev-local
     # 172-32-7-212
     HostName 52.74.62.214
