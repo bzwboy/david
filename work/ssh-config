@@ -37,7 +37,7 @@ Host dev_1viu-cron2
     IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
     ForwardAgent Yes
 
-Host dev_extract_production
+Host dev_1viu_extract_production
     # 172.16.13.55
     HostName 54.254.24.248
     Port 22
@@ -45,7 +45,7 @@ Host dev_extract_production
     IdentityFile /Users/ott002/iCloud/viu/pccw-ott-root.pem
     ForwardAgent Yes
 
-Host qa_extract_staging
+Host qa_1viu_extract_staging
     # 172.16.13.55
     HostName 13.213.142.177
     Port 22
