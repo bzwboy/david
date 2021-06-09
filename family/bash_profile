@@ -47,7 +47,7 @@ PROMPT_COMMAND="find_git_branch;$PROMPT_COMMAND"
 
 GREEN="\[\033[01;31m\]"
 COLOR_END="\033[0m"
-export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$GREEN\$git_branch$COLOR_END\$ "
+export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$GREEN\$git_branch$COLOR_END\$ "
 
 
 #################################################
