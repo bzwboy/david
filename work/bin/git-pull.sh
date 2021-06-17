@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BASE_DIR="$HOME/git/payment-backend"
+BASE_DIR="$HOME/git/vuclip-console"
 
 cd $BASE_DIR
 exec 1>&2
@@ -8,16 +8,14 @@ exec 1>&2
 run () {
     local cmd="${1}"
 
-    echo $cmd
+    echo "=> $cmd"
     eval $cmd
+    echo
 }
 
 br_list=(
-    "DevelopBranch"
-    "prod"
+    "dev"
     "qa"
-    "qa_autoqa"
-    "staging"
 )
 
 cur_br="`git br | grep \* | cut -c 3-`"
@@ -31,11 +29,10 @@ for br in ${br_list[@]}; do
         run "git checkout $br"
     fi
 
-    git pull origin $br
+    run "git pull origin $br"
     if [ $? -ne 0 ]; then
-        git pull origin $br
+        run "git pull origin $br"
     fi
-    echo
 done
 
 echo "-- Return original branch --"

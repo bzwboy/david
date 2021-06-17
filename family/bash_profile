@@ -24,6 +24,8 @@ alias la='ls -alh'
 alias tailf='tail -f'
 alias sc='ssh_config'
 alias py2='/usr/bin/python'
+alias uat_ext="ssh dev_1viu_extract_production"
+alias qa_ext="ssh qa_1viu_extract_staging"
 
 function find_git_branch {
     local dir=. head
