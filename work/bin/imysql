@@ -13,7 +13,7 @@ stop() {
 }
 
 login() {
-    /usr/local/opt/mysql/bin/mysql -h127.0.0.1 -uroot -pott@123456 --prompt "\u@local \d> "
+    /usr/local/opt/mysql/bin/mysql -uroot --prompt "\u@local \d> " test 
 }
 
 if [ -n "${1}" ]; then
